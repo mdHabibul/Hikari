@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import KanjiFetch from "./KanjiFetch";
 
 function KanjiApi({ level }) {
   const [data, setData] = useState([]);
+  const [dataLevel, setDataLevel] = useState(null);
   const [kanji, setKanji] = useState({
     moji: null,
     kunArray: [],
@@ -24,8 +26,7 @@ function KanjiApi({ level }) {
   const applyKanji = (entry) => {
     if (!entry) return;
 
-    setKanji((prev) => ({
-      ...prev,
+    setKanji({
       moji: entry.kanji ?? null,
       kunArray: entry.kun_readings ?? [],
       onArray: entry.on_readings ?? [],
@@ -36,59 +37,35 @@ function KanjiApi({ level }) {
       showKunBtn: true,
       showOnBtn: true,
       showMeaningBtn: true,
-    }));
-
+    });
   };
-  console.log(kanji)
-
-  const fetchKanji = async () => {
-    try {
-      const response = await fetch(`https://kanjiapi.dev/v1/kanji/jlpt-${level}-enriched`);
-
-      if (!response.ok) {
-        throw new Error(`Request failed: ${response.status}`);
-      }
-
-      const nextData = await response.json();
-      setData(nextData);
-      const nextEntry = pickRandomKanji(nextData);
-      applyKanji(nextEntry);
-    } catch (error) {
-      console.error("Error fetching kanji:", error);
-    }
-  };
-
-  function nextKanji() {
-    const nextEntry = pickRandomKanji(data);
-    applyKanji(nextEntry);
-  }
 
   useEffect(() => {
-    fetchKanji();
-  }, [level]);
+    if (data.length !== 0 && dataLevel === level) return;
 
-  const Showkun = () => setKanji((prev) => ({ ...prev, showKun: true }));
-  const Showkunbtn = () => setKanji((prev) => ({ ...prev, showKunBtn: false }));
+    function handleData(nextData) {
+      setData(nextData);
+      setDataLevel(level);
+      applyKanji(pickRandomKanji(nextData));
+    }
+
+    KanjiFetch(level, handleData);
+  }, [level, data.length, dataLevel]);
+
+  function nextKanji() {
+    applyKanji(pickRandomKanji(data));
+  }
 
   const handleKunButtonClick = () => {
-    Showkun();
-    Showkunbtn();
+    setKanji((prev) => ({ ...prev, showKun: true, showKunBtn: false }));
   };
-
-  const Showmeaning = () => setKanji((prev) => ({ ...prev, showMeaning: true }));
-  const Showmeaningbtn = () => setKanji((prev) => ({ ...prev, showMeaningBtn: false }));
 
   const handleMeaningButtonClick = () => {
-    Showmeaning();
-    Showmeaningbtn();
+    setKanji((prev) => ({ ...prev, showMeaning: true, showMeaningBtn: false }));
   };
 
-  const Showon = () => setKanji((prev) => ({ ...prev, showOn: true }));
-  const Showonbtn = () => setKanji((prev) => ({ ...prev, showOnBtn: false }));
-
   const handleOnButtonClick = () => {
-    Showon();
-    Showonbtn();
+    setKanji((prev) => ({ ...prev, showOn: true, showOnBtn: false }));
   };
 
   return (
@@ -114,7 +91,7 @@ function KanjiApi({ level }) {
             </div>
             <div className="border-t border-custom-border-hover px-6 py-6">
               <div className="flex justify-center gap-3">
-                <button onClick={setKanji} className="rounded-xl border border-custom-border-hover bg-custom-background px-8 py-3 text-sm font-medium text-custom-text-muted hover:border-custom-primary hover:text-custom-text">Clear</button>
+                <button onClick={() => setKanji((prev) => ({ ...prev, moji: null }))} className="rounded-xl border border-custom-border-hover bg-custom-background px-8 py-3 text-sm font-medium text-custom-text-muted hover:border-custom-primary hover:text-custom-text">Clear</button>
                 <button onClick={nextKanji} className="rounded-xl bg-custom-primary px-10 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 active:scale-[0.98]">Next Kanji<span className="ml-3">→</span></button>
               </div>
             </div>

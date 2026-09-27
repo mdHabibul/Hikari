@@ -1,175 +1,55 @@
-// import KanjiApi from "./kanjiApi"
-// import data from "./KanjiApi"
+import { useEffect, useState } from "react";
+import KanjiFetch from "./KanjiFetch";
 
-const data = [
-    {
-        "alternate_stroke_counts": [],
-        "freq_mainichi_shinbun": 308,
-        "grade": 8,
-        "heisig_en": "bestow",
-        "jlpt": 3,
-        "kanji": "与",
-        "kun_readings": [
-            "あた.える",
-            "あずか.る",
-            "くみ.する",
-            "ともに"
-        ],
-        "meanings": [
-            "bestow",
-            "participate in",
-            "give",
-            "award",
-            "impart",
-            "provide",
-            "cause",
-            "gift",
-            "godsend"
-        ],
-        "name_readings": [
-            "とも",
-            "ゆ"
-        ],
-        "notes": [],
-        "on_readings": [
-            "ヨ"
-        ],
-        "stroke_count": 3,
-        "unicode": "4E0E"
-    },
-    {
-        "alternate_stroke_counts": [],
-        "freq_mainichi_shinbun": 247,
-        "grade": 3,
-        "heisig_en": "both",
-        "jlpt": 3,
-        "kanji": "両",
-        "kun_readings": [
-            "てる",
-            "ふたつ"
-        ],
-        "meanings": [
-            "both",
-            "old Japanese coin",
-            "counter for carriages (e.g., in a train)",
-            "two"
-        ],
-        "name_readings": [
-            "もろ"
-        ],
-        "notes": [],
-        "on_readings": [
-            "リョウ"
-        ],
-        "stroke_count": 6,
-        "unicode": "4E21"
-    },
-    {
-        "alternate_stroke_counts": [],
-        "freq_mainichi_shinbun": 377,
-        "grade": 3,
-        "heisig_en": "ride",
-        "jlpt": 3,
-        "kanji": "乗",
-        "kun_readings": [
-            "の.る",
-            "-の.り",
-            "の.せる"
-        ],
-        "meanings": [
-            "ride",
-            "power",
-            "multiplication",
-            "record",
-            "counter for vehicles",
-            "board",
-            "mount",
-            "join"
-        ],
-        "name_readings": [
-            "のり"
-        ],
-        "notes": [],
-        "on_readings": [
-            "ジョウ",
-            "ショウ"
-        ],
-        "stroke_count": 9,
-        "unicode": "4E57"
-    },
-    {
-        "alternate_stroke_counts": [],
-        "freq_mainichi_shinbun": 180,
-        "grade": 3,
-        "heisig_en": "beforehand",
-        "jlpt": 3,
-        "kanji": "予",
-        "kun_readings": [
-            "あらかじ.め"
-        ],
-        "meanings": [
-            "beforehand",
-            "previous",
-            "myself",
-            "I"
-        ],
-        "name_readings": [],
-        "notes": [],
-        "on_readings": [
-            "ヨ",
-            "シャ"
-        ],
-        "stroke_count": 4,
-        "unicode": "4E88"
-    },
-    {
-        "alternate_stroke_counts": [],
-        "freq_mainichi_shinbun": 271,
-        "grade": 4,
-        "heisig_en": "contend",
-        "jlpt": 3,
-        "kanji": "争",
-        "kun_readings": [
-            "あらそ.う",
-            "いか.でか"
-        ],
-        "meanings": [
-            "contend",
-            "dispute",
-            "argue"
-        ],
-        "name_readings": [],
-        "notes": [],
-        "on_readings": [
-            "ソウ"
-        ],
-        "stroke_count": 6,
-        "unicode": "4E89"
-    }
-]
-
-function KanjiBox() {
+function KanjiBox({ data }) {
     return (
-        <div className="flex gap-2 text-center">
-            {data.map(element => (
-                <div className="bg-custom-border-dark space-y-2">
-                    <div className="flex gap-0.5">
-                        <p>{element.kun_readings[0]}</p>•<p>{element.on_readings[0]}</p>
+        <div className="flex flex-wrap gap-4">
+            {data.map((element) => (
+            <div className="w-42 rounded-2xl border border-custom-border-hover bg-custom-secondary p-5 text-center shadow-sm">
+                    <div className="mb-4 flex min-h-5 justify-center gap-2 text-xs text-custom-text-muted">
+                        <p className="font-japanese font-medium">{element.kun_readings[0] ? element.kun_readings[0] : ""}</p>
+                        {element.kun_readings[0] && element.on_readings[0] && <span>•</span>}
+                        <p className="font-japanese font-medium">{element.on_readings[0] ? element.on_readings[0] : ""}</p>
                     </div>
-                    <h1 className="font-extrabold text-5xl">{element.kanji}</h1>
-                    <p>{element.heisig_en}</p>
+                    <h2 className="mb-4 font-kanji text-6xl leading-none text-custom-text">{element.kanji}</h2>
+                    <p className="min-h-10 text-sm text-custom-text-muted">{element.heisig_en ? element.heisig_en : "_"}</p>
                 </div>
             ))}
         </div>
-    )
+    );
 }
 
 function Kanjis() {
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        if (data.length !== 0) return;
+
+        KanjiFetch(1, setData);
+    }, [data.length]);
+
     return (
-        <div className="bg-custom-background w-full p-20 flex">
-            <KanjiBox />
+        <div className="min-h-screen w-full bg-custom-background text-custom-text font-english">
+            <div className="mx-auto max-w-6xl px-6 py-12">
+                <div className="mb-10 flex items-end justify-between">
+                    <div>
+                        <p className="mb-2 text-xs font-semibold text-custom-text-muted">Kanji frequency</p>
+                        <h1 className="text-3xl font-semibold">JLPT N1 Heatmap</h1>
+                    </div>
+                    <div className="rounded-full border border-custom-border-hover bg-custom-secondary px-4 py-2">
+                        <span className="text-xs font-semibold text-custom-text-muted">{data.length} characters</span>
+                    </div>
+                </div>
+                {data.length === 0 ? (
+                    <div className="rounded-2xl border border-custom-border-hover bg-custom-secondary px-6 py-16 text-center text-sm text-custom-text-muted">
+                        Loading kanji...
+                    </div>
+                ) : (
+                    <KanjiBox data={data} />
+                )}
+            </div>
         </div>
-    )
+    );
 }
 
-export default Kanjis
+export default Kanjis;
