@@ -6,11 +6,13 @@ import './index.css'
 import App from './App.jsx'
 // import SelectLesson from './routes/selectLesson.jsx';
 // import Home from './routes/home.jsx'
+import Kanjis from './kanjis.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    {/* <RouterProvider router={router} /> */}
     {/* <App /> */}
     {/* <SelectLesson /> */}
+    <Kanjis />
   </StrictMode>,
 )
