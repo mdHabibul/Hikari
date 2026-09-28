@@ -10,9 +10,9 @@ import VocabApi from './vocabApi.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    {/* <RouterProvider router={router} /> */}
     {/* <App /> */}
     {/* <SelectLesson /> */}
-    {/* <VocabApi /> */}
+    <VocabApi />
   </StrictMode>,
 )

@@ -6,15 +6,28 @@ function VocabApi() {
         word: null,
         meanings: [],
         examples: [],
+        isLoading: true,
     });
 
     useEffect(() => {
         async function fetchVocab() {
-            const data = await VocabFetch(5);
+            const vocabularyList = await VocabFetch(5);
+            if (!vocabularyList?.length) {
+                setVocab((currentVocab) => ({
+                    ...currentVocab,
+                    word: "NNN",
+                    isLoading: false,
+                }));
+                return;
+            }
+
+            const randomIndex = Math.floor(Math.random() * vocabularyList.length);
+            const randomVocab = vocabularyList[randomIndex];
             setVocab({
-                word: data.word ?? "NNN",
-                meanings: data.meanings ?? ["NNN"],
-                examples: data.examples ?? ["NNN"]
+                word: randomVocab.word ?? "NNN",
+                meanings: randomVocab.meanings ?? ["NNN"],
+                examples: randomVocab.examples ?? [],
+                isLoading: false,
             });
         }
 
@@ -25,7 +38,11 @@ function VocabApi() {
 
     return (
         <>
-            <p>{vocab.word}</p>
+            {vocab.isLoading ? (
+                <p>Loading vocabulary...</p>
+            ) : (
+                <p>{vocab.word}</p>
+            )}
         </>
     )
 }
