@@ -16,7 +16,9 @@ import { Route as JlptN2RouteImport } from './routes/jlpt-n2'
 import { Route as JlptN3RouteImport } from './routes/jlpt-n3'
 import { Route as JlptN4RouteImport } from './routes/jlpt-n4'
 import { Route as JlptN5RouteImport } from './routes/jlpt-n5'
+import { Route as KanjisRouteImport } from './routes/kanjis'
 import { Route as SelectLessonRouteImport } from './routes/selectLesson'
+import { Route as SelectTypeRouteImport } from './routes/selectType'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -53,9 +55,19 @@ const JlptN5Route = JlptN5RouteImport.update({
   path: '/jlpt-n5',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KanjisRoute = KanjisRouteImport.update({
+  id: '/kanjis',
+  path: '/kanjis',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SelectLessonRoute = SelectLessonRouteImport.update({
   id: '/selectLesson',
   path: '/selectLesson',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SelectTypeRoute = SelectTypeRouteImport.update({
+  id: '/selectType',
+  path: '/selectType',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -67,7 +79,9 @@ export interface FileRoutesByFullPath {
   '/jlpt-n3': typeof JlptN3Route
   '/jlpt-n4': typeof JlptN4Route
   '/jlpt-n5': typeof JlptN5Route
+  '/kanjis': typeof KanjisRoute
   '/selectLesson': typeof SelectLessonRoute
+  '/selectType': typeof SelectTypeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -77,7 +91,9 @@ export interface FileRoutesByTo {
   '/jlpt-n3': typeof JlptN3Route
   '/jlpt-n4': typeof JlptN4Route
   '/jlpt-n5': typeof JlptN5Route
+  '/kanjis': typeof KanjisRoute
   '/selectLesson': typeof SelectLessonRoute
+  '/selectType': typeof SelectTypeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -88,7 +104,9 @@ export interface FileRoutesById {
   '/jlpt-n3': typeof JlptN3Route
   '/jlpt-n4': typeof JlptN4Route
   '/jlpt-n5': typeof JlptN5Route
+  '/kanjis': typeof KanjisRoute
   '/selectLesson': typeof SelectLessonRoute
+  '/selectType': typeof SelectTypeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -100,7 +118,9 @@ export interface FileRouteTypes {
     | '/jlpt-n3'
     | '/jlpt-n4'
     | '/jlpt-n5'
+    | '/kanjis'
     | '/selectLesson'
+    | '/selectType'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -110,7 +130,9 @@ export interface FileRouteTypes {
     | '/jlpt-n3'
     | '/jlpt-n4'
     | '/jlpt-n5'
+    | '/kanjis'
     | '/selectLesson'
+    | '/selectType'
   id:
     | '__root__'
     | '/'
@@ -120,7 +142,9 @@ export interface FileRouteTypes {
     | '/jlpt-n3'
     | '/jlpt-n4'
     | '/jlpt-n5'
+    | '/kanjis'
     | '/selectLesson'
+    | '/selectType'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -131,7 +155,9 @@ export interface RootRouteChildren {
   JlptN3Route: typeof JlptN3Route
   JlptN4Route: typeof JlptN4Route
   JlptN5Route: typeof JlptN5Route
+  KanjisRoute: typeof KanjisRoute
   SelectLessonRoute: typeof SelectLessonRoute
+  SelectTypeRoute: typeof SelectTypeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -185,11 +211,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JlptN5RouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/kanjis': {
+      id: '/kanjis'
+      path: '/kanjis'
+      fullPath: '/kanjis'
+      preLoaderRoute: typeof KanjisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/selectLesson': {
       id: '/selectLesson'
       path: '/selectLesson'
       fullPath: '/selectLesson'
       preLoaderRoute: typeof SelectLessonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/selectType': {
+      id: '/selectType'
+      path: '/selectType'
+      fullPath: '/selectType'
+      preLoaderRoute: typeof SelectTypeRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -203,7 +243,9 @@ const rootRouteChildren: RootRouteChildren = {
   JlptN3Route: JlptN3Route,
   JlptN4Route: JlptN4Route,
   JlptN5Route: JlptN5Route,
+  KanjisRoute: KanjisRoute,
   SelectLessonRoute: SelectLessonRoute,
+  SelectTypeRoute: SelectTypeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -80,6 +80,11 @@ function KanjiApi({ level }) {
             <span className="text-xs font-semibold uppercase text-custom-text-muted">JLPT N{level}</span>
           </div>
         </div>
+        {dataKanji.length === 0 && (
+          <div className="rounded-2xl border border-custom-border-hover bg-custom-secondary px-6 py-16 text-center text-sm text-custom-text-muted">
+            Loading kanji...
+          </div>
+        )}
         {kanji.moji && (
           <div className="overflow-hidden rounded-3xl border border-custom-border-hover bg-custom-secondary shadow-2xl">
             <div className="flex flex-col items-center px-6 pb-12 pt-12">
