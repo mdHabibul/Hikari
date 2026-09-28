@@ -7,12 +7,14 @@ import App from './App.jsx'
 // import SelectLesson from './routes/selectLesson.jsx';
 // import Home from './routes/home.jsx'
 import Kanjis from './kanjis.jsx';
+import VocabApi from './vocabApi.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    {/* <RouterProvider router={router} /> */}
+    <RouterProvider router={router} />
     {/* <App /> */}
     {/* <SelectLesson /> */}
-    <Kanjis />
+    {/* <Kanjis /> */}
+    {/* <VocabApi /> */}
   </StrictMode>,
 )

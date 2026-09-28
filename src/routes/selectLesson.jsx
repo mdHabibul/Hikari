@@ -14,11 +14,11 @@ function SelectLesson() {
     return (
         <div className="w-full min-h-screen px-6 py-20 bg-custom-background font-english text-custom-text">
             <p className="text-center mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-custom-text-muted">Learning center</p>
-            <h1 className="text-center text-4xl sm:text-5xl font-semibold tracking-tight mb-4">Select what you want to learn</h1>
+            <h1 className="text-center text-4xl sm:text-5xl font-semibold mb-4">Select what you want to learn</h1>
             <p className="text-center mb-12 text-sm text-custom-text-muted">Choose a subject and continue your Japanese learning journey.</p>
 
             <div className="flex flex-col justify-center gap-4 m-auto max-w-3xl text-custom-text">
-                <button onClick={() => navigate({ to: `/jlpt-n${level}` })} className="group flex items-center justify-between py-6 px-6 rounded-2xl border border-custom-border-hover bg-custom-secondary text-left transition-all duration-200 hover:cursor-pointer hover:-translate-y-1 hover:border-custom-primary hover:bg-custom-secondary-hover active:bg-custom-mint-hover">
+                <button onClick={() => navigate({ to: `/jlpt-n${level}` })} className="group flex items-center justify-between py-6 px-6 rounded-2xl border border-custom-border-hover bg-custom-secondary text-left transition-all duration-200 hover:cursor-pointer hover:-translate-y-1 hover:border-custom-primary hover:bg-custom-secondary-hover hover:shadow-2xl active:bg-custom-mint-hover">
                     <div>
                         <p className="mb-2 text-xl font-semibold text-custom-text">Kanji</p>
                         <p className="text-sm text-custom-text-muted">Learn japanese characters</p>
