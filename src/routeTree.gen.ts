@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as JlptN1RouteImport } from './routes/jlpt-n1'
 import { Route as JlptN2RouteImport } from './routes/jlpt-n2'
@@ -17,6 +18,11 @@ import { Route as JlptN4RouteImport } from './routes/jlpt-n4'
 import { Route as JlptN5RouteImport } from './routes/jlpt-n5'
 import { Route as SelectLessonRouteImport } from './routes/selectLesson'
 
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const HomeRoute = HomeRouteImport.update({
   id: '/home',
   path: '/home',
@@ -54,6 +60,7 @@ const SelectLessonRoute = SelectLessonRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
   '/home': typeof HomeRoute
   '/jlpt-n1': typeof JlptN1Route
   '/jlpt-n2': typeof JlptN2Route
@@ -63,6 +70,7 @@ export interface FileRoutesByFullPath {
   '/selectLesson': typeof SelectLessonRoute
 }
 export interface FileRoutesByTo {
+  '/': typeof IndexRoute
   '/home': typeof HomeRoute
   '/jlpt-n1': typeof JlptN1Route
   '/jlpt-n2': typeof JlptN2Route
@@ -73,6 +81,7 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
   '/home': typeof HomeRoute
   '/jlpt-n1': typeof JlptN1Route
   '/jlpt-n2': typeof JlptN2Route
@@ -84,6 +93,7 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/'
     | '/home'
     | '/jlpt-n1'
     | '/jlpt-n2'
@@ -93,6 +103,7 @@ export interface FileRouteTypes {
     | '/selectLesson'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/'
     | '/home'
     | '/jlpt-n1'
     | '/jlpt-n2'
@@ -102,6 +113,7 @@ export interface FileRouteTypes {
     | '/selectLesson'
   id:
     | '__root__'
+    | '/'
     | '/home'
     | '/jlpt-n1'
     | '/jlpt-n2'
@@ -112,6 +124,7 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
   HomeRoute: typeof HomeRoute
   JlptN1Route: typeof JlptN1Route
   JlptN2Route: typeof JlptN2Route
@@ -123,6 +136,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/home': {
       id: '/home'
       path: '/home'
@@ -176,6 +196,7 @@ declare module '@tanstack/react-router' {
 }
 
 const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
   HomeRoute: HomeRoute,
   JlptN1Route: JlptN1Route,
   JlptN2Route: JlptN2Route,

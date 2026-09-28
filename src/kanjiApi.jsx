@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import KanjiFetch from "./KanjiFetch";
 
 function KanjiApi({ level }) {
-  const [data, setData] = useState([]);
-  const [dataLevel, setDataLevel] = useState(null);
+  const [dataKanji, setDataKanji] = useState([]);
+  const [dataKanjiLevel, setDataKanjiLevel] = useState(null);
   const [kanji, setKanji] = useState({
     moji: null,
     kunArray: [],
@@ -41,19 +41,19 @@ function KanjiApi({ level }) {
   };
 
   useEffect(() => {
-    if (data.length !== 0 && dataLevel === level) return;
+    if (dataKanji.length !== 0 && dataKanjiLevel === level) return;
 
-    function handleData(nextData) {
-      setData(nextData);
-      setDataLevel(level);
-      applyKanji(pickRandomKanji(nextData));
+    function handleKanjiData(nextDataKanji) {
+      setDataKanji(nextDataKanji);
+      setDataKanjiLevel(level);
+      applyKanji(pickRandomKanji(nextDataKanji));
     }
 
-    KanjiFetch(level, handleData);
-  }, [level, data.length, dataLevel]);
+    KanjiFetch(level, handleKanjiData);
+  }, [level, dataKanji.length, dataKanjiLevel]);
 
   function nextKanji() {
-    applyKanji(pickRandomKanji(data));
+    applyKanji(pickRandomKanji(dataKanji));
   }
 
   const handleKunButtonClick = () => {
