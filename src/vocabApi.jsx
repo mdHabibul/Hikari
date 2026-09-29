@@ -1,7 +1,7 @@
 import VocabFetch from "./VocabFetch"
 import { useState, useEffect } from "react"
 
-function VocabApi() {
+function VocabApi({ level }) {
     const [dataVocab, setDataVocab] = useState(null)
     const [vocab, setVocab] = useState({
         word: null,
@@ -19,9 +19,9 @@ function VocabApi() {
 
     useEffect(() => {
         function fetchVocab() {
-            VocabFetch(1).then((vocabularyList) => {
+            VocabFetch(level).then((vocabularyList) => {
                 setDataVocab(vocabularyList);
-                if (!vocabularyList.length) {
+                if (!vocabularyList?.length) {
                     setVocab((currentVocab) => ({
                         ...currentVocab,
                         word: "_",
@@ -49,7 +49,7 @@ function VocabApi() {
         }
 
         fetchVocab();
-    }, []);
+    }, [level]);
 
     function nextWord() {
         if (!dataVocab.length) return;
@@ -93,7 +93,7 @@ function VocabApi() {
                             <h1 className="text-3xl font-semibold">Daily Vocabulary</h1>
                         </div>
                         <div className="rounded-full border border-custom-border-hover bg-custom-secondary px-4 py-2">
-                            <span className="text-xs font-semibold uppercase text-custom-text-muted">JLPT N1</span>
+                            <span className="text-xs font-semibold uppercase text-custom-text-muted">JLPT N{level}</span>
                         </div>
                     </div>
                     {vocab.length === 0 && (
@@ -127,7 +127,7 @@ function VocabApi() {
                                             <div className="min-h-24">
                                                 <p className="mb-3 text-xs text-custom-text-muted">Japanese reading</p>
                                                 <div className="whitespace-pre-line space-y-2 text-lg font-japanese text-custom-text">
-                                                    {vocab.reading ? vocab.reading : "_"}
+                                                    {vocab.reading ? vocab.reading : "-"}
                                                 </div>
                                             </div>
                                         ) :

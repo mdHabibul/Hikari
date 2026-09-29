@@ -1,251 +1,53 @@
+import { useEffect, useState } from "react";
 import VocabFetch from "./VocabFetch";
 
-const dataVocab = [
-    {
-        "word": "あさって",
-        "reading": "",
-        "meanings": [
-            "day after tomorrow"
-        ],
-        "level": "N5",
-        "examples": [
-            {
-                "ja": "あさって来てください。",
-                "en": "Come the day after tomorrow."
-            },
-            {
-                "ja": "あさってはトムの誕生日だ。",
-                "en": "The day after tomorrow is Tom's birthday."
-            }
-        ]
-    },
-    {
-        "word": "あそこ",
-        "reading": "",
-        "meanings": [
-            "over there"
-        ],
-        "level": "N5",
-        "examples": [
-            {
-                "ja": "あそこを見て。",
-                "en": "Look over there."
-            },
-            {
-                "ja": "先生はあそこよ。",
-                "en": "The teacher is over there."
-            }
-        ]
-    },
-    {
-        "word": "あちら",
-        "reading": "",
-        "meanings": [
-            "there"
-        ],
-        "level": "N5",
-        "examples": [
-            {
-                "ja": "トイレはあちらにあります。",
-                "en": "The toilet is over there."
-            },
-            {
-                "ja": "あちらに富士山が見えます。",
-                "en": "We can see Mt. Fuji over there."
-            }
-        ]
-    },
-    {
-        "word": "あっち",
-        "reading": "",
-        "meanings": [
-            "over there"
-        ],
-        "level": "N5",
-        "examples": [
-            {
-                "ja": "あっち行け！",
-                "en": "Go to hell!"
-            },
-            {
-                "ja": "あっちへ行け！",
-                "en": "Go away!"
-            }
-        ]
-    },
-    {
-        "word": "あなた",
-        "reading": "",
-        "meanings": [
-            "you"
-        ],
-        "level": "N5",
-        "examples": [
-            {
-                "ja": "あなたの本？",
-                "en": "Is the book yours?"
-            },
-            {
-                "ja": "あなたは朝型？",
-                "en": "Would you say you're a morning person?"
-            }
-        ]
-    },
-    {
-        "word": "あの",
-        "reading": "",
-        "meanings": [
-            "that over there"
-        ],
-        "level": "N5",
-        "examples": [
-            {
-                "ja": "あの車です。",
-                "en": "It was that car."
-            },
-            {
-                "ja": "あの煙を見て。",
-                "en": "Look at that smoke."
-            }
-        ]
-    },
-    {
-        "word": "アパート",
-        "reading": "",
-        "meanings": [
-            "apartment"
-        ],
-        "level": "N5",
-        "examples": [
-            {
-                "ja": "いいアパートね。",
-                "en": "This is a great apartment."
-            },
-            {
-                "ja": "彼はアパートを借りた。",
-                "en": "He rented an apartment."
-            }
-        ]
-    },
-    {
-        "word": "あびる",
-        "reading": "",
-        "meanings": [
-            "to bathe",
-            "to shower"
-        ],
-        "level": "N5"
-    },
-    {
-        "word": "あまり",
-        "reading": "",
-        "meanings": [
-            "not very"
-        ],
-        "level": "N5",
-        "examples": [
-            {
-                "ja": "あまり見えない。",
-                "en": "I see it rarely."
-            },
-            {
-                "ja": "あまり気負うな。",
-                "en": "Don't get worked up."
-            }
-        ]
-    },
-    {
-        "word": "ある",
-        "reading": "",
-        "meanings": [
-            "to be",
-            "to have (used for inanimate objects)"
-        ],
-        "level": "N5",
-        "examples": [
-            {
-                "ja": "熱はあるの？",
-                "en": "Do you have a fever?"
-            },
-            {
-                "ja": "今携帯ある？",
-                "en": "Do you have your cell on you?"
-            }
-        ]
-    },
-    {
-        "word": "あれ",
-        "reading": "",
-        "meanings": [
-            "that"
-        ],
-        "level": "N5",
-        "examples": [
-            {
-                "ja": "何だあれは？",
-                "en": "What's that?"
-            },
-            {
-                "ja": "冷徹であれ！",
-                "en": "Be merciless."
-            }
-        ]
-    },
-    {
-        "word": "いい/よい",
-        "reading": "",
-        "meanings": [
-            "good"
-        ],
-        "level": "N5"
-    },
-    {
-        "word": "いいえ",
-        "reading": "",
-        "meanings": [
-            "no"
-        ],
-        "level": "N5",
-        "examples": [
-            {
-                "ja": "いいえ、少しも。",
-                "en": "Not at all."
-            },
-            {
-                "ja": "いいえ、眠いです。",
-                "en": "No, I'm tired."
-            }
-        ]
-    },
-    {
-        "word": "いかが",
-        "reading": "",
-        "meanings": [
-            "how"
-        ],
-        "level": "N5",
-        "examples": [
-            {
-                "ja": "一口いかが？",
-                "en": "How about a bite to eat?"
-            },
-            {
-                "ja": "葉巻はいかが？",
-                "en": "Have a cigar?"
-            }
-        ]
-    }]
+function Vocabs({ level }) {
+    const [dataVocab, setDataVocab] = useState([]);
 
-function VocabBox() {
+    useEffect(() => {
+        VocabFetch(level).then((vocabularyList) => {
+            setDataVocab(vocabularyList ?? []);
+        });
+    }, [level]);
+
     return (
-        <div></div>
-    )
+        <div className="min-h-screen w-full bg-custom-background text-custom-text font-english">
+            <div className="mx-auto max-w-6xl px-6 py-12">
+                <div className="mb-10 flex items-end justify-between">
+                    <div>
+                        <p className="mb-2 text-xs font-semibold text-custom-text-muted">Vocabulary</p>
+                        <h1 className="text-3xl font-semibold">JLPT N{level} Vocabulary</h1>
+                    </div>
+                    <div className="rounded-full border border-custom-border-hover bg-custom-secondary px-4 py-2">
+                        <span className="text-xs font-semibold text-custom-text-muted">{dataVocab.length} words</span>
+                    </div>
+                </div>
+                {dataVocab.length === 0 ? (
+                    <div className="rounded-2xl border border-custom-border-hover bg-custom-secondary px-6 py-16 text-center text-sm text-custom-text-muted">
+                        Loading vocabulary...
+                    </div>
+                ) : (
+                    <VocabBox dataVocab={dataVocab} />
+                )}
+            </div>
+        </div>
+    );
 }
 
-function Vocabs() {
+function VocabBox({ dataVocab }) {
     return (
-        <div></div>
-    )
+        <div className="flex flex-wrap gap-4">
+            {dataVocab.map((element) => (
+                <div key={element.word} className="w-42 rounded-2xl border border-custom-border-hover bg-custom-bg-50 p-5 text-center shadow-sm transition-all duration-100 hover:-translate-y-1 hover:cursor-pointer hover:shadow-2xl">
+                    <div className="mb-4 flex min-h-5 justify-center gap-2 text-xs">
+                        <p className="font-japanese font-medium">{element.reading || ""}</p>
+                    </div>
+                    <h2 className="mb-4 font-kanji text-6xl">{element.word}</h2>
+                    <p className="text-sm">{element.meanings? element.meanings[0] : "_"}</p>
+                </div>
+            ))}
+        </div>
+    );
 }
 
-export default Vocabs
+export default Vocabs;

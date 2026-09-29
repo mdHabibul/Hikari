@@ -3,16 +3,12 @@ import { createRoot } from 'react-dom/client'
 import { RouterProvider } from "@tanstack/react-router";
 import router from './router.jsx'
 import './index.css'
-import App from './App.jsx'
-// import SelectLesson from './routes/selectLesson.jsx';
-// import Home from './routes/home.jsx'
-import VocabApi from './vocabApi.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    {/* <RouterProvider router={router} /> */}
+    <RouterProvider router={router} />
     {/* <App /> */}
     {/* <SelectLesson /> */}
-    <VocabApi />
+    {/* <VocabApi /> */}
   </StrictMode>,
 )

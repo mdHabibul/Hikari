@@ -18,7 +18,7 @@ function SelectLesson() {
             <p className="text-center mb-12 text-sm text-custom-text-muted">Choose a subject and continue your Japanese learning journey.</p>
 
             <div className="flex flex-col justify-center gap-4 m-auto max-w-3xl text-custom-text">
-                <button onClick={() => navigate({ to: "/selectType", search: { level } })} className="group flex items-center justify-between py-6 px-6 rounded-2xl border border-custom-border-hover bg-custom-secondary text-left transition-all duration-200 hover:cursor-pointer hover:-translate-y-1 hover:border-custom-primary hover:bg-custom-secondary-hover hover:shadow-2xl active:bg-custom-mint-hover">
+                <button onClick={() => navigate({ to: "/selectType", search: { level, subject: "kanji" } })} className="group flex items-center justify-between py-6 px-6 rounded-2xl border border-custom-border-hover bg-custom-secondary text-left transition-all duration-200 hover:cursor-pointer hover:-translate-y-1 hover:border-custom-primary hover:bg-custom-secondary-hover hover:shadow-2xl active:bg-custom-mint-hover">
                     <div>
                         <p className="mb-2 text-xl font-semibold text-custom-text">Kanji</p>
                         <p className="text-sm text-custom-text-muted">Learn japanese characters</p>
@@ -26,20 +26,21 @@ function SelectLesson() {
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" className="text-xl text-custom-text-muted transition-all duration-200 group-hover:translate-x-1"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
                 </button>
 
-                <button className="group flex items-center justify-between py-6 px-6 rounded-2xl border border-custom-border-hover bg-custom-secondary text-left opacity-50 hover:cursor-not-allowed">
+                <button onClick={() => navigate({ to: "/selectType", search: { level, subject: "vocabulary" } })} className="group flex items-center justify-between py-6 px-6 rounded-2xl border border-custom-border-hover bg-custom-secondary text-left transition-all duration-200 hover:cursor-pointer hover:-translate-y-1 hover:border-custom-primary hover:bg-custom-secondary-hover hover:shadow-2xl active:bg-custom-mint-hover">
                     <div>
                         <p className="mb-2 text-xl font-semibold text-custom-text">Vocabulary</p>
-                        <p className="text-sm text-custom-text-muted">Build your word knowlwdge</p>
+                        <p className="text-sm text-custom-text-muted">Build your word knowledge</p>
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" className="text-xl text-custom-text-muted"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" className="text-xl text-custom-text-muted transition-transform group-hover:translate-x-1"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
                 </button>
 
-                <button className="group flex items-center justify-between py-6 px-6 rounded-2xl border border-custom-border-hover bg-custom-secondary text-left opacity-50 hover:cursor-not-allowed">
+                {/* onClick={() => navigate({ to: "/selectType", search: { level, subject: "grammar" } })} */}
+                <button className="group flex items-center justify-between py-6 px-6 rounded-2xl border border-custom-border-hover bg-custom-secondary text-left transition-all duration-200 hover:cursor-not-allowed active:bg-red-400 opacity-50">
                     <div>
                         <p className="mb-2 text-xl font-semibold text-custom-text">Grammar</p>
-                        <p className="text-sm text-custom-text-muted">Understand sentence pattern</p>
+                        <p className="text-sm text-custom-text-muted">Understand Japanese sentence patterns</p>
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" className="text-xl text-custom-text-muted"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" className="text-xl text-custom-text-muted transition-transform group-hover:translate-x-1"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
                 </button>
 
             </div>
