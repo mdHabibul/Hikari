@@ -90,7 +90,7 @@ function KanjiApi({ level }) {
             <div className="flex flex-col items-center px-6 pb-12 pt-12">
               <p className="mb-8 text-xs font-medium uppercase text-custom-text-muted">Recognize the character</p>
               <div className="flex h-72 w-72 items-center justify-center rounded-3xl border border-custom-border-hover bg-custom-background shadow-inner">
-                <span className="font-kanji text-[11rem] font-normal leading-none text-custom-text">{kanji.moji}</span>
+                <span className="font-kanji text-[11rem] font-normal text-custom-text">{kanji.moji}</span>
               </div>
               <p className="mt-8 text-sm text-custom-text-muted">Take your time. Study at your own pace.</p>
             </div>
