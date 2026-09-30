@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import Vocabs from "../vocabs";
+import GramApi from "../gramApi";
+import Grams from "../grams";
 
 export const Route = createFileRoute("/study")({
     validateSearch: (search) => ({
@@ -15,6 +17,14 @@ function StudyPlaceholder() {
 
     if (subject === "vocabulary" && mode === "browse") {
         return <Vocabs level={level} />;
+    }
+
+    if (subject === "grammar" && mode === "practice") {
+        return <GramApi level={level} />;
+    }
+
+    if (subject === "grammar" && mode === "browse") {
+        return <Grams level={level} />;
     }
 
     return null;

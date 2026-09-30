@@ -1,5 +1,3 @@
-import grams from "./grams";
-
 async function GramFetch(level) {
     try {
 		const response = await fetch(`https://raw.githubusercontent.com/evanclan/OpenJLPT/main/data/json/grammar/n${level}.json`);
