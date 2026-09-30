@@ -21,7 +21,7 @@ function VocabApi({ level }) {
         function fetchVocab() {
             VocabFetch(level).then((vocabularyList) => {
                 setDataVocab(vocabularyList);
-                if (!vocabularyList?.length) {
+                if (!vocabularyList.length) {
                     setVocab((currentVocab) => ({
                         ...currentVocab,
                         word: "_",
@@ -140,7 +140,7 @@ function VocabApi({ level }) {
                                                 </button>
                                             )}
                                     </div>
-                                    <div className="w-1/3 p-8">
+                                    <div className="w-1/3 p-8 border-r border-custom-border-hover">
                                         <div className="mb-5 flex items-center justify-between">
                                             <span className="text-xs font-semibold text-custom-text-muted">MEANING</span>
                                             <span className="text-sm font-japanese text-custom-text-muted">意味</span>

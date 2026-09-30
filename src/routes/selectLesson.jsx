@@ -34,8 +34,7 @@ function SelectLesson() {
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" className="text-xl text-custom-text-muted transition-transform group-hover:translate-x-1"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
                 </button>
 
-                {/* onClick={() => navigate({ to: "/selectType", search: { level, subject: "grammar" } })} */}
-                <button className="group flex items-center justify-between py-6 px-6 rounded-2xl border border-custom-border-hover bg-custom-secondary text-left transition-all duration-200 hover:cursor-not-allowed active:bg-red-400 opacity-50">
+                <button onClick={() => navigate({ to: "/selectType", search: { level, subject: "grammar" } })} className="group flex items-center justify-between py-6 px-6 rounded-2xl border border-custom-border-hover bg-custom-secondary text-left transition-all duration-200 hover:cursor-pointer hover:-translate-y-1 hover:border-custom-primary hover:bg-custom-secondary-hover hover:shadow-2xl active:bg-custom-mint-hover">
                     <div>
                         <p className="mb-2 text-xl font-semibold text-custom-text">Grammar</p>
                         <p className="text-sm text-custom-text-muted">Understand Japanese sentence patterns</p>
