@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as HomeRouteImport } from './routes/home'
+import { Route as InfoRouteImport } from './routes/info'
 import { Route as JlptN1RouteImport } from './routes/jlpt-n1'
 import { Route as JlptN2RouteImport } from './routes/jlpt-n2'
 import { Route as JlptN3RouteImport } from './routes/jlpt-n3'
@@ -30,6 +31,11 @@ const IndexRoute = IndexRouteImport.update({
 const HomeRoute = HomeRouteImport.update({
   id: '/home',
   path: '/home',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InfoRoute = InfoRouteImport.update({
+  id: '/info',
+  path: '/info',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JlptN1Route = JlptN1RouteImport.update({
@@ -86,6 +92,7 @@ const VocabRoute = VocabRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/home': typeof HomeRoute
+  '/info': typeof InfoRoute
   '/jlpt-n1': typeof JlptN1Route
   '/jlpt-n2': typeof JlptN2Route
   '/jlpt-n3': typeof JlptN3Route
@@ -100,6 +107,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/home': typeof HomeRoute
+  '/info': typeof InfoRoute
   '/jlpt-n1': typeof JlptN1Route
   '/jlpt-n2': typeof JlptN2Route
   '/jlpt-n3': typeof JlptN3Route
@@ -115,6 +123,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/home': typeof HomeRoute
+  '/info': typeof InfoRoute
   '/jlpt-n1': typeof JlptN1Route
   '/jlpt-n2': typeof JlptN2Route
   '/jlpt-n3': typeof JlptN3Route
@@ -131,6 +140,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/home'
+    | '/info'
     | '/jlpt-n1'
     | '/jlpt-n2'
     | '/jlpt-n3'
@@ -145,6 +155,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/home'
+    | '/info'
     | '/jlpt-n1'
     | '/jlpt-n2'
     | '/jlpt-n3'
@@ -159,6 +170,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/home'
+    | '/info'
     | '/jlpt-n1'
     | '/jlpt-n2'
     | '/jlpt-n3'
@@ -174,6 +186,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   HomeRoute: typeof HomeRoute
+  InfoRoute: typeof InfoRoute
   JlptN1Route: typeof JlptN1Route
   JlptN2Route: typeof JlptN2Route
   JlptN3Route: typeof JlptN3Route
@@ -200,6 +213,13 @@ declare module '@tanstack/react-router' {
       path: '/home'
       fullPath: '/home'
       preLoaderRoute: typeof HomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/info': {
+      id: '/info'
+      path: '/info'
+      fullPath: '/info'
+      preLoaderRoute: typeof InfoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/jlpt-n1': {
@@ -278,6 +298,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   HomeRoute: HomeRoute,
+  InfoRoute: InfoRoute,
   JlptN1Route: JlptN1Route,
   JlptN2Route: JlptN2Route,
   JlptN3Route: JlptN3Route,

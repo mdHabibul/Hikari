@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import Vocabs from "../vocabs";
 import GramApi from "../gramApi";
-import Grams from "../grams";
+import Grams from "./grams";
 
 export const Route = createFileRoute("/study")({
     validateSearch: (search) => ({
