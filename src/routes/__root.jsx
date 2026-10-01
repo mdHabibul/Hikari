@@ -1,5 +1,6 @@
 import { createRootRoute, Outlet, useNavigate } from "@tanstack/react-router";
 import { useState } from "react"
+import logo from '../assets/hikari.png'
 
 export const Route = createRootRoute({
     component: Root,
@@ -12,7 +13,10 @@ function Root() {
     return (
         <>
             <div className="font-english flex justify-between items-center px-6 bg-custom-navbar-bg text-custom-navbar-text">
-                <h1 className="text-custom-navbar-title pl-3 py-1 uppercase text-5xl">Hikari</h1>
+                <div className="flex justify-center items-center">
+                    <img className="size-12" src={logo} alt="Hikari logo" />
+                    <h1 className="text-custom-navbar-title pl-3 py-1 uppercase text-5xl">Hikari</h1>
+                </div>
                 <div className="flex justify-around gap-8">
                     <button onClick={() => navigate({ to: "/home" })} className="px-4 py-2 hover:bg-custom-navbar-hover hover:rounded-2xl hover:cursor-pointer active:bg-custom-navbar-active">Home</button>
                     <button className="px-4 py-2 hover:bg-custom-navbar-hover hover:rounded-2xl hover:cursor-pointer active:bg-custom-navbar-active">Progress</button>
@@ -25,7 +29,7 @@ function Root() {
                         <input type="text" className="w-36 rounded-lg border border-transparent bg-custom-navbar-hover px-3 py-1.5 text-left text-custom-navbar-text placeholder:text-custom-navbar-muted outline-none transition-colors focus:bg-custom-navbar-bg" placeholder="Search..." />
                     </div>
                     <button>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17.925 20.056a6 6 0 0 0-11.851.001"/><circle cx="12" cy="11" r="4"/><circle cx="12" cy="12" r="10"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17.925 20.056a6 6 0 0 0-11.851.001" /><circle cx="12" cy="11" r="4" /><circle cx="12" cy="12" r="10" /></svg>
                     </button>
                     <div className="relative">
                         <button onClick={() => setHamIsClicked(!hamIsClicked)}>
