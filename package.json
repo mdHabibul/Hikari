@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@midudev/tailwind-animations": "^1.0.1",
     "@tailwindcss/vite": "^4.3.3",
     "@tanstack/react-router": "^1.170.38",
     "react": "^19.2.8",

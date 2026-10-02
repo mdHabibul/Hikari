@@ -48,10 +48,12 @@ function SelectType() {
                             <div><p className="mb-2 text-xl font-semibold text-custom-text">Vocabulary List</p><p className="text-sm text-custom-text-muted">Browse JLPT N{level} vocabulary.</p></div>
                             <span className="text-custom-text-muted transition-transform group-hover:translate-x-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg></span>
                         </button>
-                        {/* <button onClick={() => openStudyMode("quiz")} className="group flex items-center justify-between rounded-2xl border border-custom-border-hover bg-custom-secondary px-6 py-6 text-left transition-all duration-200 hover:-translate-y-1 hover:cursor-pointer hover:border-custom-primary hover:bg-custom-secondary-hover hover:shadow-2xl active:bg-custom-mint-hover">
+                        <button
+                            // onClick={() => openStudyMode("quiz")}
+                            className="group flex items-center justify-between rounded-2xl border border-custom-border-hover bg-custom-secondary px-6 py-6 text-left transition-all duration-200 hover:-translate-y-1 hover:shadow-2xl hover:bg-red-200 hover:border-red-400 hover:cursor-not-allowed hover:animate-shake">
                             <div><p className="mb-2 text-xl font-semibold text-custom-text">Knowledge Check</p><p className="text-sm text-custom-text-muted">Test yourself on the vocabulary you have studied.</p></div>
                             <span className="text-custom-text-muted transition-transform group-hover:translate-x-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg></span>
-                        </button> */}
+                        </button>
                     </>
                 ) : subject === "grammar" ? (
                     <>
@@ -63,7 +65,9 @@ function SelectType() {
                             <div><p className="mb-2 text-xl font-semibold text-custom-text">Grammar Patterns</p><p className="text-sm text-custom-text-muted">Browse JLPT N{level} grammar patterns.</p></div>
                             <span className="text-custom-text-muted transition-transform group-hover:translate-x-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg></span>
                         </button>
-                        <button onClick={() => openStudyMode("quiz")} className="group flex items-center justify-between rounded-2xl border border-custom-border-hover bg-custom-secondary px-6 py-6 text-left transition-all duration-200 hover:-translate-y-1 hover:cursor-pointer hover:border-custom-primary hover:bg-custom-secondary-hover hover:shadow-2xl active:bg-custom-mint-hover">
+                        <button
+                            // onClick={() => openStudyMode("quiz")} 
+                            className="group flex items-center justify-between rounded-2xl border border-custom-border-hover bg-custom-secondary px-6 py-6 text-left transition-all duration-200 hover:-translate-y-1 hover:shadow-2xl hover:bg-red-200 hover:border-red-400 hover:cursor-not-allowed hover:animate-shake">
                             <div><p className="mb-2 text-xl font-semibold text-custom-text">Knowledge Check</p><p className="text-sm text-custom-text-muted">Test yourself on the grammar you have studied.</p></div>
                             <span className="text-custom-text-muted transition-transform group-hover:translate-x-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg></span>
                         </button>
@@ -78,10 +82,12 @@ function SelectType() {
                             <div><p className="mb-2 text-xl font-semibold text-custom-text">All Kanji Heatmap</p><p className="text-sm text-custom-text-muted">Browse the full JLPT N{level} kanji list.</p></div>
                             <span className="text-custom-text-muted transition-transform group-hover:translate-x-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg></span>
                         </button>
-                        {/* <button onClick={() => openStudyMode("quiz")} className="group flex items-center justify-between rounded-2xl border border-custom-border-hover bg-custom-secondary px-6 py-6 text-left transition-all duration-200 hover:-translate-y-1 hover:cursor-pointer hover:border-custom-primary hover:bg-custom-secondary-hover hover:shadow-2xl active:bg-custom-mint-hover">
+                        <button
+                            // onClick={() => openStudyMode("quiz")}
+                            className="group flex items-center justify-between rounded-2xl border border-custom-border-hover bg-custom-secondary px-6 py-6 text-left transition-all duration-200 hover:-translate-y-1 hover:shadow-2xl hover:bg-red-200 hover:border-red-400 hover:cursor-not-allowed hover:animate-shake">
                             <div><p className="mb-2 text-xl font-semibold text-custom-text">Knowledge Check</p><p className="text-sm text-custom-text-muted">Test yourself on the kanji you have studied.</p></div>
                             <span className="text-custom-text-muted transition-transform group-hover:translate-x-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg></span>
-                        </button> */}
+                        </button>
                     </>
                 )}
             </div>

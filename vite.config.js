@@ -5,5 +5,5 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [tanstackRouter(), react(), tailwindcss()],
+  plugins: [tanstackRouter(), react(), tailwindcss(), require('@midudev/tailwind-animations')],
 })
