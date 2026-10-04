@@ -32,20 +32,20 @@ function Home() {
                         </button>
                     </div>
                     <div className="flex flex-wrap gap-4">
-                        <div className="min-w-52 flex-1 rounded-2xl border border-custom-border-hover bg-custom-bg-50 p-6 text-custom-text shadow-sm">
-                            <p className="mb-3 text-xs font-semibold uppercase text-custom-text-muted">Kanji</p>
-                            <p className="mb-3 text-3xl font-semibold">2,211</p>
-                            <p className="text-sm leading-6 text-custom-text-muted">Practice readings and meanings, or browse the kanji frequency heatmap.</p>
-                        </div>
                         <div className="min-w-52 flex-1 rounded-2xl border border-custom-border-hover bg-custom-bg-200 p-6 text-custom-text shadow-sm">
-                            <p className="mb-3 text-xs font-semibold uppercase text-custom-text-muted">Vocabulary</p>
-                            <p className="mb-3 text-3xl font-semibold">7,811</p>
-                            <p className="text-sm leading-6 text-custom-text-muted">Study Japanese words with readings, meanings, and example sentences.</p>
+                            <p className="mb-3 text-xs font-semibold uppercase text-custom-text-muted">Kanji</p>
+                            <p className="mb-3 text-3xl font-semibold">2211</p>
+                            <p className="text-sm text-custom-text-muted">Practice readings and meanings, or browse the kanji frequency heatmap.</p>
                         </div>
                         <div className="min-w-52 flex-1 rounded-2xl border border-custom-border-hover bg-custom-bg-400 p-6 text-custom-text shadow-sm">
+                            <p className="mb-3 text-xs font-semibold uppercase text-custom-text-muted">Vocabulary</p>
+                            <p className="mb-3 text-3xl font-semibold">7811</p>
+                            <p className="text-sm text-custom-text-muted">Study Japanese words with readings, meanings, and example sentences.</p>
+                        </div>
+                        <div className="min-w-52 flex-1 rounded-2xl border border-custom-border-hover bg-custom-bg-50 p-6 text-custom-text shadow-sm">
                             <p className="mb-3 text-xs font-semibold uppercase text-custom-text-muted">Grammar</p>
                             <p className="mb-3 text-3xl font-semibold">526</p>
-                            <p className="text-sm leading-6 text-custom-text-muted">Practice grammar patterns or browse meanings, formation, and examples.</p>
+                            <p className="text-sm text-custom-text-muted">Practice grammar patterns or browse meanings, formation, and examples.</p>
                         </div>
                     </div>
                     <p className="mt-4 text-xs text-custom-text-muted">Content totals across JLPT N1 to N5.</p>
