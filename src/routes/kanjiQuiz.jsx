@@ -8,12 +8,13 @@ import KanjiFetch from "../KanjiFetch";
 // })
 
 function KanjiQuiz() {
-    const level = 3;
+    const level = 5;
     const [dataKanji, setDataKanji] = useState([]);
-    const [dataKanjiLevel, setDataKanjiLevel] = useState(3);
+    const [dataKanjiLevel, setDataKanjiLevel] = useState(5);
     const [kanjiPile, setKanjiPile] = useState([]);
-    // const [optionPile, setOptionPile] = useState([]);
+    const [optionPile, setOptionPile] = useState([]);
     const [kanjiIndex, setKanjiIndex] = useState([]);
+    const [correctIndex, setCorrectIndex] = useState(null);
 
     useEffect(() => {
         if (dataKanji.length !== 0 && dataKanjiLevel === level) return;
@@ -31,6 +32,10 @@ function KanjiQuiz() {
 
         const pile = dataKanji.map(element => element.kanji);
         setKanjiPile(pile);
+
+        const option = dataKanji.map(element => element.heisig_en);
+        setOptionPile(option);
+
     }, [dataKanji]);
 
     useEffect(() => {
@@ -52,6 +57,7 @@ function KanjiQuiz() {
         } while (randomIndex04 === randomIndex01 || randomIndex04 === randomIndex02 || randomIndex04 === randomIndex03);
 
         setKanjiIndex([randomIndex01, randomIndex02, randomIndex03, randomIndex04]);
+        setCorrectIndex(Math.floor(Math.random() * kanjiIndex.length));
     }, [kanjiPile]);
 
     return (
@@ -70,29 +76,29 @@ function KanjiQuiz() {
                     <div className="flex flex-col items-center px-6 pb-12 pt-12">
                         <p className="mb-8 text-xs font-medium uppercase text-custom-text-muted">Recognize the character</p>
                         <div className="flex h-72 w-72 items-center justify-center rounded-3xl border border-custom-border-hover bg-custom-background shadow-inner">
-                            <span className="font-kanji text-[11rem] font-normal text-custom-text">{kanjiPile[kanjiIndex[0]]}</span>
+                            <span className="font-kanji text-[11rem] font-normal text-custom-text">{kanjiPile[kanjiIndex[correctIndex]]}</span>
                         </div>
                         <p className="mt-8 text-sm text-custom-text-muted">Take your time. Study at your own pace.</p>
                     </div>
                     <div className="flex flex-col gap-7 mb-15">
                         <div className="flex justify-between px-15 items-center">
-                            <button className="border border-custom-border-dark min-h-20 w-100 text-3xl flex items-center px-5 rounded-2xl transition-all duration-300 hover:scale-102 active:scale-98">
+                            <button className="border border-custom-border-dark min-h-20 w-100 text-3xl flex items-center px-5 rounded-2xl transition-all duration-200 hover:scale-102 active:scale-98">
                                 <p className="mr-8 pr-8 border-r">A</p>
-                                <p>{kanjiPile[kanjiIndex[0]]}</p>
+                                <p className="uppercase font-serif font-extralight">{optionPile[kanjiIndex[0]]}</p>
                             </button>
-                            <button className="border border-custom-border-dark min-h-20 w-100 text-3xl flex items-center px-5 rounded-2xl transition-all duration-300 hover:scale-102 active:scale-98">
+                            <button className="border border-custom-border-dark min-h-20 w-100 text-3xl flex items-center px-5 rounded-2xl transition-all duration-200 hover:scale-102 active:scale-98">
                                 <p className="mr-8 pr-8 border-r">B</p>
-                                <p>{kanjiPile[kanjiIndex[1]]}</p>
+                                <p className="uppercase font-serif font-extralight">{optionPile[kanjiIndex[1]]}</p>
                             </button>
                         </div>
                         <div className="flex justify-between px-15 items-center">
-                            <button className="border border-custom-border-dark min-h-20 w-100 text-3xl flex items-center px-5 rounded-2xl transition-all duration-300 hover:scale-102 active:scale-98">
+                            <button className="border border-custom-border-dark min-h-20 w-100 text-3xl flex items-center px-5 rounded-2xl transition-all duration-200 hover:scale-102 active:scale-98">
                                 <p className="mr-8 pr-8 border-r">C</p>
-                                <p>{kanjiPile[kanjiIndex[2]]}</p>
+                                <p className="uppercase font-serif font-extralight overflow-auto scrollbar-track-transparent no-scrollbar">{optionPile[kanjiIndex[2]]}</p>
                             </button>
-                            <button className="border border-custom-border-dark min-h-20 w-100 text-3xl flex items-center px-5 rounded-2xl transition-all duration-300 hover:scale-102 active:scale-98">
+                            <button className="border border-custom-border-dark min-h-20 w-100 text-3xl flex items-center px-5 rounded-2xl transition-all duration-200 hover:scale-102 active:scale-98">
                                 <p className="mr-8 pr-8 border-r">D</p>
-                                <p>{kanjiPile[kanjiIndex[3]]}</p>
+                                <p className="uppercase font-serif font-extralight">{optionPile[kanjiIndex[3]]}</p>
                             </button>
                         </div>
                     </div>
