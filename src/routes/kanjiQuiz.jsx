@@ -80,27 +80,30 @@ function KanjiQuiz() {
                         </div>
                         <p className="mt-8 text-sm text-custom-text-muted">Take your time. Study at your own pace.</p>
                     </div>
-                    <div className="flex flex-col gap-7 mb-15">
-                        <div className="flex justify-between px-15 items-center">
-                            <button className="border border-custom-border-dark min-h-20 w-100 text-3xl flex items-center px-5 rounded-2xl transition-all duration-200 hover:scale-102 active:scale-98">
+                    <div className="flex flex-col gap-7 mb-7">
+                        <div className="flex justify-around items-center px-15">
+                            <button className="border border-custom-border-dark min-h-15 w-90 text-2xl flex items-center px-5 rounded-2xl transition-all duration-200 hover:scale-102 active:scale-98">
                                 <p className="mr-8 pr-8 border-r">A</p>
-                                <p className="uppercase font-serif font-extralight">{optionPile[kanjiIndex[0]]}</p>
+                                <p className="uppercase font-serif font-extralight overflow-auto scrollbar-track-transparent no-scrollbar">{optionPile[kanjiIndex[0]]}</p>
                             </button>
-                            <button className="border border-custom-border-dark min-h-20 w-100 text-3xl flex items-center px-5 rounded-2xl transition-all duration-200 hover:scale-102 active:scale-98">
+                            <button className="border border-custom-border-dark min-h-15 w-90 text-2xl flex items-center px-5 rounded-2xl transition-all duration-200 hover:scale-102 active:scale-98">
                                 <p className="mr-8 pr-8 border-r">B</p>
-                                <p className="uppercase font-serif font-extralight">{optionPile[kanjiIndex[1]]}</p>
+                                <p className="uppercase font-serif font-extralight overflow-auto scrollbar-track-transparent no-scrollbar">{optionPile[kanjiIndex[1]]}</p>
                             </button>
                         </div>
-                        <div className="flex justify-between px-15 items-center">
-                            <button className="border border-custom-border-dark min-h-20 w-100 text-3xl flex items-center px-5 rounded-2xl transition-all duration-200 hover:scale-102 active:scale-98">
+                        <div className="flex justify-around items-center px-15">
+                            <button className="border border-custom-border-dark min-h-15 w-90 text-2xl flex items-center px-5 rounded-2xl transition-all duration-200 hover:scale-102 active:scale-98">
                                 <p className="mr-8 pr-8 border-r">C</p>
                                 <p className="uppercase font-serif font-extralight overflow-auto scrollbar-track-transparent no-scrollbar">{optionPile[kanjiIndex[2]]}</p>
                             </button>
-                            <button className="border border-custom-border-dark min-h-20 w-100 text-3xl flex items-center px-5 rounded-2xl transition-all duration-200 hover:scale-102 active:scale-98">
+                            <button className="border border-custom-border-dark min-h-15 w-90 text-2xl flex items-center px-5 rounded-2xl transition-all duration-200 hover:scale-102 active:scale-98">
                                 <p className="mr-8 pr-8 border-r">D</p>
-                                <p className="uppercase font-serif font-extralight">{optionPile[kanjiIndex[3]]}</p>
+                                <p className="uppercase font-serif font-extralight overflow-auto scrollbar-track-transparent no-scrollbar">{optionPile[kanjiIndex[3]]}</p>
                             </button>
                         </div>
+                    </div>
+                    <div className="mb-10 flex justify-end pr-15">
+                        <button className="group rounded-xl bg-custom-primary px-10 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 active:scale-[0.98]">Next Kanji<span className="inline-block ml-3 transition-transform group-hover:translate-x-3">→</span></button>
                     </div>
                 </div>
             </div>
