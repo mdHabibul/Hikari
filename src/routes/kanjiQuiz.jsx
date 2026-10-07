@@ -1,20 +1,15 @@
-// import { createFileRoute } from '@tanstack/react-router'
-
 import { useState, useEffect } from "react";
 import KanjiFetch from "../KanjiFetch";
 
-// export const Route = createFileRoute('/kanjiQuiz')({
-//   component: KanjiQuiz,
-// })
-
 function KanjiQuiz() {
-    const level = 5;
+    const level = 3;
     const [dataKanji, setDataKanji] = useState([]);
     const [dataKanjiLevel, setDataKanjiLevel] = useState(5);
     const [kanjiPile, setKanjiPile] = useState([]);
     const [optionPile, setOptionPile] = useState([]);
     const [kanjiIndex, setKanjiIndex] = useState([]);
     const [correctIndex, setCorrectIndex] = useState(null);
+    const [selectedAnswer, setSelectedAnswer] = useState(null);
 
     useEffect(() => {
         if (dataKanji.length !== 0 && dataKanjiLevel === level) return;
@@ -31,34 +26,48 @@ function KanjiQuiz() {
         if (dataKanji.length === 0) return;
 
         const pile = dataKanji.map(element => element.kanji);
-        setKanjiPile(pile);
-
         const option = dataKanji.map(element => element.heisig_en);
-        setOptionPile(option);
 
+        setKanjiPile(pile);
+        setOptionPile(option);
     }, [dataKanji]);
 
     useEffect(() => {
-        if (kanjiPile.length === 0) return;
+        if (kanjiPile.length < 4) return;
 
-        let randomIndex02, randomIndex03, randomIndex04;
+        generateQuestion();
+    }, [kanjiPile]);
+
+    function generateQuestion() {
         let randomIndex01 = Math.floor(Math.random() * kanjiPile.length);
 
+        let randomIndex02;
         do {
             randomIndex02 = Math.floor(Math.random() * kanjiPile.length);
         } while (randomIndex02 === randomIndex01);
 
+        let randomIndex03;
         do {
             randomIndex03 = Math.floor(Math.random() * kanjiPile.length);
         } while (randomIndex03 === randomIndex01 || randomIndex03 === randomIndex02);
 
+        let randomIndex04;
         do {
             randomIndex04 = Math.floor(Math.random() * kanjiPile.length);
         } while (randomIndex04 === randomIndex01 || randomIndex04 === randomIndex02 || randomIndex04 === randomIndex03);
 
-        setKanjiIndex([randomIndex01, randomIndex02, randomIndex03, randomIndex04]);
-        setCorrectIndex(Math.floor(Math.random() * kanjiIndex.length));
-    }, [kanjiPile]);
+        const newIndexes = [randomIndex01, randomIndex02, randomIndex03, randomIndex04];
+
+        setKanjiIndex(newIndexes);
+        setCorrectIndex(Math.floor(Math.random() * 4));
+        setSelectedAnswer(null);
+    }
+
+    function handleAnswer(option) {
+        if (selectedAnswer !== null) return;
+
+        setSelectedAnswer(option);
+    }
 
     return (
         <div className="min-h-screen w-full bg-custom-background text-custom-text font-english">
@@ -72,6 +81,7 @@ function KanjiQuiz() {
                         <span className="text-xs font-semibold uppercase text-custom-text-muted">JLPT N{level}</span>
                     </div>
                 </div>
+
                 <div className="overflow-hidden rounded-3xl border border-custom-border-hover bg-custom-secondary shadow-2xl">
                     <div className="flex flex-col items-center px-6 pb-12 pt-12">
                         <p className="mb-8 text-xs font-medium uppercase text-custom-text-muted">Recognize the character</p>
@@ -80,35 +90,40 @@ function KanjiQuiz() {
                         </div>
                         <p className="mt-8 text-sm text-custom-text-muted">Take your time. Study at your own pace.</p>
                     </div>
+
                     <div className="flex flex-col gap-7 mb-7">
                         <div className="flex justify-around items-center px-15">
-                            <button className="border border-custom-border-dark min-h-15 w-90 text-2xl flex items-center px-5 rounded-2xl transition-all duration-200 hover:scale-102 active:scale-98">
+                            <button onClick={() => handleAnswer(0)} className={`border min-h-15 w-90 text-2xl flex items-center px-5 rounded-2xl transition-all duration-200 ${selectedAnswer === 0 ? correctIndex === 0 ? "border-green-500 bg-green-500/10" : "border-red-500 bg-red-500/10" : "border-custom-border-dark hover:scale-102 active:scale-98"}`}>
                                 <p className="mr-8 pr-8 border-r">A</p>
                                 <p className="uppercase font-serif font-extralight overflow-auto scrollbar-track-transparent no-scrollbar">{optionPile[kanjiIndex[0]]}</p>
                             </button>
-                            <button className="border border-custom-border-dark min-h-15 w-90 text-2xl flex items-center px-5 rounded-2xl transition-all duration-200 hover:scale-102 active:scale-98">
+
+                            <button onClick={() => handleAnswer(1)} className={`border min-h-15 w-90 text-2xl flex items-center px-5 rounded-2xl transition-all duration-200 ${selectedAnswer === 1 ? correctIndex === 1 ? "border-green-500 bg-green-500/10" : "border-red-500 bg-red-500/10" : "border-custom-border-dark hover:scale-102 active:scale-98"}`}>
                                 <p className="mr-8 pr-8 border-r">B</p>
                                 <p className="uppercase font-serif font-extralight overflow-auto scrollbar-track-transparent no-scrollbar">{optionPile[kanjiIndex[1]]}</p>
                             </button>
                         </div>
+
                         <div className="flex justify-around items-center px-15">
-                            <button className="border border-custom-border-dark min-h-15 w-90 text-2xl flex items-center px-5 rounded-2xl transition-all duration-200 hover:scale-102 active:scale-98">
+                            <button onClick={() => handleAnswer(2)} className={`border min-h-15 w-90 text-2xl flex items-center px-5 rounded-2xl transition-all duration-200 ${selectedAnswer === 2 ? correctIndex === 2 ? "border-green-500 bg-green-500/10" : "border-red-500 bg-red-500/10" : "border-custom-border-dark hover:scale-102 active:scale-98"}`}>
                                 <p className="mr-8 pr-8 border-r">C</p>
                                 <p className="uppercase font-serif font-extralight overflow-auto scrollbar-track-transparent no-scrollbar">{optionPile[kanjiIndex[2]]}</p>
                             </button>
-                            <button className="border border-custom-border-dark min-h-15 w-90 text-2xl flex items-center px-5 rounded-2xl transition-all duration-200 hover:scale-102 active:scale-98">
+
+                            <button onClick={() => handleAnswer(3)} className={`border min-h-15 w-90 text-2xl flex items-center px-5 rounded-2xl transition-all duration-200 ${selectedAnswer === 3 ? correctIndex === 3 ? "border-green-500 bg-green-500/10" : "border-red-500 bg-red-500/10" : "border-custom-border-dark hover:scale-102 active:scale-98"}`}>
                                 <p className="mr-8 pr-8 border-r">D</p>
                                 <p className="uppercase font-serif font-extralight overflow-auto scrollbar-track-transparent no-scrollbar">{optionPile[kanjiIndex[3]]}</p>
                             </button>
                         </div>
                     </div>
+
                     <div className="mb-10 flex justify-end pr-15">
-                        <button className="group rounded-xl bg-custom-primary px-10 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 active:scale-[0.98]">Next Kanji<span className="inline-block ml-3 transition-transform group-hover:translate-x-3">→</span></button>
+                        <button onClick={generateQuestion} className="group rounded-xl bg-custom-primary px-10 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 active:scale-[0.98]">Next Kanji<span className="inline-block ml-3 transition-transform group-hover:translate-x-3">→</span></button>
                     </div>
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default KanjiQuiz
+export default KanjiQuiz;
