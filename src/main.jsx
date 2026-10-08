@@ -7,7 +7,7 @@ import KanjiQuiz from './routes/kanjiQuiz.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    {/* <RouterProvider router={router} /> */}
-    <KanjiQuiz />
+    <RouterProvider router={router} />
+    {/* <KanjiQuiz /> */}
   </StrictMode>,
 )

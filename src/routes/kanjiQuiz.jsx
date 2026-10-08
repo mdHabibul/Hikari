@@ -1,8 +1,21 @@
 import { useState, useEffect } from "react";
+import { createFileRoute } from "@tanstack/react-router";
+import "../App.css";
 import KanjiFetch from "../KanjiFetch";
 
-function KanjiQuiz() {
-    const level = 3;
+export const Route = createFileRoute("/kanjiQuiz")({
+    validateSearch: (search) => ({
+        level: Math.min(5, Math.max(1, Number(search.level) || 5)),
+    }),
+    component: KanjiQuizRoute,
+});
+
+function KanjiQuizRoute() {
+    const { level } = Route.useSearch();
+    return <KanjiQuiz level={level} />;
+}
+
+function KanjiQuiz({ level }) {
     const [dataKanji, setDataKanji] = useState([]);
     const [dataKanjiLevel, setDataKanjiLevel] = useState(5);
     const [kanjiPile, setKanjiPile] = useState([]);
@@ -93,26 +106,26 @@ function KanjiQuiz() {
 
                     <div className="flex flex-col gap-7 mb-7">
                         <div className="flex justify-around items-center px-15">
-                            <button onClick={() => handleAnswer(0)} className={`border min-h-15 w-90 text-2xl flex items-center px-5 rounded-2xl transition-all duration-200 ${selectedAnswer === 0 ? correctIndex === 0 ? "border-green-500 bg-green-500/10" : "border-red-500 bg-red-500/10" : "border-custom-border-dark hover:scale-102 active:scale-98"}`}>
-                                <p className="mr-8 pr-8 border-r">A</p>
-                                <p className="uppercase font-serif font-extralight overflow-auto scrollbar-track-transparent no-scrollbar">{optionPile[kanjiIndex[0]]}</p>
+                            <button onClick={() => handleAnswer(0)} className={`border min-h-15 w-90 text-2xl flex items-center px-5 rounded-2xl transition-all duration-200 ${selectedAnswer === 0 ? correctIndex === 0 ? "border-custom-success bg-custom-bg-100" : "border-custom-danger bg-custom-danger-subtle" : "border-custom-border-dark bg-custom-surface text-custom-text hover:border-custom-primary hover:bg-custom-surface-hover active:scale-[0.98]"}`}>
+                                <p className="mr-8 pr-8 border-r border-current">A</p>
+                                <p className="font-serif font-extralight overflow-auto scrollbar-track-transparent no-scrollbar">{optionPile[kanjiIndex[0]]}</p>
                             </button>
 
-                            <button onClick={() => handleAnswer(1)} className={`border min-h-15 w-90 text-2xl flex items-center px-5 rounded-2xl transition-all duration-200 ${selectedAnswer === 1 ? correctIndex === 1 ? "border-green-500 bg-green-500/10" : "border-red-500 bg-red-500/10" : "border-custom-border-dark hover:scale-102 active:scale-98"}`}>
-                                <p className="mr-8 pr-8 border-r">B</p>
-                                <p className="uppercase font-serif font-extralight overflow-auto scrollbar-track-transparent no-scrollbar">{optionPile[kanjiIndex[1]]}</p>
+                            <button onClick={() => handleAnswer(1)} className={`border min-h-15 w-90 text-2xl flex items-center px-5 rounded-2xl transition-all duration-200 ${selectedAnswer === 1 ? correctIndex === 1 ? "border-custom-success bg-custom-bg-100" : "border-custom-danger bg-custom-danger-subtle" : "border-custom-border-dark bg-custom-surface text-custom-text hover:border-custom-primary hover:bg-custom-surface-hover active:scale-[0.98]"}`}>
+                                <p className="mr-8 pr-8 border-r border-current">B</p>
+                                <p className="font-serif font-extralight overflow-auto scrollbar-track-transparent no-scrollbar">{optionPile[kanjiIndex[1]]}</p>
                             </button>
                         </div>
 
                         <div className="flex justify-around items-center px-15">
-                            <button onClick={() => handleAnswer(2)} className={`border min-h-15 w-90 text-2xl flex items-center px-5 rounded-2xl transition-all duration-200 ${selectedAnswer === 2 ? correctIndex === 2 ? "border-green-500 bg-green-500/10" : "border-red-500 bg-red-500/10" : "border-custom-border-dark hover:scale-102 active:scale-98"}`}>
-                                <p className="mr-8 pr-8 border-r">C</p>
-                                <p className="uppercase font-serif font-extralight overflow-auto scrollbar-track-transparent no-scrollbar">{optionPile[kanjiIndex[2]]}</p>
+                            <button onClick={() => handleAnswer(2)} className={`border min-h-15 w-90 text-2xl flex items-center px-5 rounded-2xl transition-all duration-200 ${selectedAnswer === 2 ? correctIndex === 2 ? "border-custom-success bg-custom-bg-100" : "border-custom-danger bg-custom-danger-subtle" : "border-custom-border-dark bg-custom-surface text-custom-text hover:border-custom-primary hover:bg-custom-surface-hover active:scale-[0.98]"}`}>
+                                <p className="mr-8 pr-8 border-r border-current">C</p>
+                                <p className="font-serif font-extralight overflow-auto scrollbar-track-transparent no-scrollbar">{optionPile[kanjiIndex[2]]}</p>
                             </button>
 
-                            <button onClick={() => handleAnswer(3)} className={`border min-h-15 w-90 text-2xl flex items-center px-5 rounded-2xl transition-all duration-200 ${selectedAnswer === 3 ? correctIndex === 3 ? "border-green-500 bg-green-500/10" : "border-red-500 bg-red-500/10" : "border-custom-border-dark hover:scale-102 active:scale-98"}`}>
-                                <p className="mr-8 pr-8 border-r">D</p>
-                                <p className="uppercase font-serif font-extralight overflow-auto scrollbar-track-transparent no-scrollbar">{optionPile[kanjiIndex[3]]}</p>
+                            <button onClick={() => handleAnswer(3)} className={`border min-h-15 w-90 text-2xl flex items-center px-5 rounded-2xl transition-all duration-200 ${selectedAnswer === 3 ? correctIndex === 3 ? "border-custom-success bg-custom-bg-100" : "border-custom-danger bg-custom-danger-subtle" : "border-custom-border-dark bg-custom-surface text-custom-text hover:border-custom-primary hover:bg-custom-surface-hover active:scale-[0.98]"}`}>
+                                <p className="mr-8 pr-8 border-r border-current">D</p>
+                                <p className="font-serif font-extralight overflow-auto scrollbar-track-transparent no-scrollbar">{optionPile[kanjiIndex[3]]}</p>
                             </button>
                         </div>
                     </div>

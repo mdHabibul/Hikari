@@ -17,6 +17,7 @@ import { Route as JlptN2RouteImport } from './routes/jlpt-n2'
 import { Route as JlptN3RouteImport } from './routes/jlpt-n3'
 import { Route as JlptN4RouteImport } from './routes/jlpt-n4'
 import { Route as JlptN5RouteImport } from './routes/jlpt-n5'
+import { Route as KanjiQuizRouteImport } from './routes/kanjiQuiz'
 import { Route as KanjisRouteImport } from './routes/kanjis'
 import { Route as SelectLessonRouteImport } from './routes/selectLesson'
 import { Route as SelectTypeRouteImport } from './routes/selectType'
@@ -63,6 +64,11 @@ const JlptN5Route = JlptN5RouteImport.update({
   path: '/jlpt-n5',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KanjiQuizRoute = KanjiQuizRouteImport.update({
+  id: '/kanjiQuiz',
+  path: '/kanjiQuiz',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const KanjisRoute = KanjisRouteImport.update({
   id: '/kanjis',
   path: '/kanjis',
@@ -98,6 +104,7 @@ export interface FileRoutesByFullPath {
   '/jlpt-n3': typeof JlptN3Route
   '/jlpt-n4': typeof JlptN4Route
   '/jlpt-n5': typeof JlptN5Route
+  '/kanjiQuiz': typeof KanjiQuizRoute
   '/kanjis': typeof KanjisRoute
   '/selectLesson': typeof SelectLessonRoute
   '/selectType': typeof SelectTypeRoute
@@ -113,6 +120,7 @@ export interface FileRoutesByTo {
   '/jlpt-n3': typeof JlptN3Route
   '/jlpt-n4': typeof JlptN4Route
   '/jlpt-n5': typeof JlptN5Route
+  '/kanjiQuiz': typeof KanjiQuizRoute
   '/kanjis': typeof KanjisRoute
   '/selectLesson': typeof SelectLessonRoute
   '/selectType': typeof SelectTypeRoute
@@ -129,6 +137,7 @@ export interface FileRoutesById {
   '/jlpt-n3': typeof JlptN3Route
   '/jlpt-n4': typeof JlptN4Route
   '/jlpt-n5': typeof JlptN5Route
+  '/kanjiQuiz': typeof KanjiQuizRoute
   '/kanjis': typeof KanjisRoute
   '/selectLesson': typeof SelectLessonRoute
   '/selectType': typeof SelectTypeRoute
@@ -146,6 +155,7 @@ export interface FileRouteTypes {
     | '/jlpt-n3'
     | '/jlpt-n4'
     | '/jlpt-n5'
+    | '/kanjiQuiz'
     | '/kanjis'
     | '/selectLesson'
     | '/selectType'
@@ -161,6 +171,7 @@ export interface FileRouteTypes {
     | '/jlpt-n3'
     | '/jlpt-n4'
     | '/jlpt-n5'
+    | '/kanjiQuiz'
     | '/kanjis'
     | '/selectLesson'
     | '/selectType'
@@ -176,6 +187,7 @@ export interface FileRouteTypes {
     | '/jlpt-n3'
     | '/jlpt-n4'
     | '/jlpt-n5'
+    | '/kanjiQuiz'
     | '/kanjis'
     | '/selectLesson'
     | '/selectType'
@@ -192,6 +204,7 @@ export interface RootRouteChildren {
   JlptN3Route: typeof JlptN3Route
   JlptN4Route: typeof JlptN4Route
   JlptN5Route: typeof JlptN5Route
+  KanjiQuizRoute: typeof KanjiQuizRoute
   KanjisRoute: typeof KanjisRoute
   SelectLessonRoute: typeof SelectLessonRoute
   SelectTypeRoute: typeof SelectTypeRoute
@@ -257,6 +270,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JlptN5RouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/kanjiQuiz': {
+      id: '/kanjiQuiz'
+      path: '/kanjiQuiz'
+      fullPath: '/kanjiQuiz'
+      preLoaderRoute: typeof KanjiQuizRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/kanjis': {
       id: '/kanjis'
       path: '/kanjis'
@@ -304,6 +324,7 @@ const rootRouteChildren: RootRouteChildren = {
   JlptN3Route: JlptN3Route,
   JlptN4Route: JlptN4Route,
   JlptN5Route: JlptN5Route,
+  KanjiQuizRoute: KanjiQuizRoute,
   KanjisRoute: KanjisRoute,
   SelectLessonRoute: SelectLessonRoute,
   SelectTypeRoute: SelectTypeRoute,
