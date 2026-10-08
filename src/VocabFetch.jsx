@@ -1,4 +1,4 @@
-async function VocabFetch(level) {
+async function VocabFetch(level, onDataLoaded) {
 	try {
 		const response = await fetch(`https://raw.githubusercontent.com/evanclan/OpenJLPT/main/data/json/vocab/n${level}.json`);
 
@@ -7,9 +7,15 @@ async function VocabFetch(level) {
 		}
 
 		const nextDataVocab = await response.json();
+		if (typeof onDataLoaded === "function") {
+			onDataLoaded(nextDataVocab);
+		}
 		return nextDataVocab;
 	} catch (error) {
 		console.error("Error fetching vocabulary:", error);
+		if (typeof onDataLoaded === "function") {
+			onDataLoaded([]);
+		}
 		return null;
 	}
 }

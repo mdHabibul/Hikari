@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as GrammarQuizRouteImport } from './routes/grammarQuiz'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as InfoRouteImport } from './routes/info'
 import { Route as JlptN1RouteImport } from './routes/jlpt-n1'
@@ -23,10 +24,16 @@ import { Route as SelectLessonRouteImport } from './routes/selectLesson'
 import { Route as SelectTypeRouteImport } from './routes/selectType'
 import { Route as StudyRouteImport } from './routes/study'
 import { Route as VocabRouteImport } from './routes/vocab'
+import { Route as VocabQuizRouteImport } from './routes/vocabQuiz'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GrammarQuizRoute = GrammarQuizRouteImport.update({
+  id: '/grammarQuiz',
+  path: '/grammarQuiz',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HomeRoute = HomeRouteImport.update({
@@ -94,9 +101,15 @@ const VocabRoute = VocabRouteImport.update({
   path: '/vocab',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VocabQuizRoute = VocabQuizRouteImport.update({
+  id: '/vocabQuiz',
+  path: '/vocabQuiz',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/grammarQuiz': typeof GrammarQuizRoute
   '/home': typeof HomeRoute
   '/info': typeof InfoRoute
   '/jlpt-n1': typeof JlptN1Route
@@ -110,9 +123,11 @@ export interface FileRoutesByFullPath {
   '/selectType': typeof SelectTypeRoute
   '/study': typeof StudyRoute
   '/vocab': typeof VocabRoute
+  '/vocabQuiz': typeof VocabQuizRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/grammarQuiz': typeof GrammarQuizRoute
   '/home': typeof HomeRoute
   '/info': typeof InfoRoute
   '/jlpt-n1': typeof JlptN1Route
@@ -126,10 +141,12 @@ export interface FileRoutesByTo {
   '/selectType': typeof SelectTypeRoute
   '/study': typeof StudyRoute
   '/vocab': typeof VocabRoute
+  '/vocabQuiz': typeof VocabQuizRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/grammarQuiz': typeof GrammarQuizRoute
   '/home': typeof HomeRoute
   '/info': typeof InfoRoute
   '/jlpt-n1': typeof JlptN1Route
@@ -143,11 +160,13 @@ export interface FileRoutesById {
   '/selectType': typeof SelectTypeRoute
   '/study': typeof StudyRoute
   '/vocab': typeof VocabRoute
+  '/vocabQuiz': typeof VocabQuizRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/grammarQuiz'
     | '/home'
     | '/info'
     | '/jlpt-n1'
@@ -161,9 +180,11 @@ export interface FileRouteTypes {
     | '/selectType'
     | '/study'
     | '/vocab'
+    | '/vocabQuiz'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/grammarQuiz'
     | '/home'
     | '/info'
     | '/jlpt-n1'
@@ -177,9 +198,11 @@ export interface FileRouteTypes {
     | '/selectType'
     | '/study'
     | '/vocab'
+    | '/vocabQuiz'
   id:
     | '__root__'
     | '/'
+    | '/grammarQuiz'
     | '/home'
     | '/info'
     | '/jlpt-n1'
@@ -193,10 +216,12 @@ export interface FileRouteTypes {
     | '/selectType'
     | '/study'
     | '/vocab'
+    | '/vocabQuiz'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  GrammarQuizRoute: typeof GrammarQuizRoute
   HomeRoute: typeof HomeRoute
   InfoRoute: typeof InfoRoute
   JlptN1Route: typeof JlptN1Route
@@ -210,6 +235,7 @@ export interface RootRouteChildren {
   SelectTypeRoute: typeof SelectTypeRoute
   StudyRoute: typeof StudyRoute
   VocabRoute: typeof VocabRoute
+  VocabQuizRoute: typeof VocabQuizRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -219,6 +245,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/grammarQuiz': {
+      id: '/grammarQuiz'
+      path: '/grammarQuiz'
+      fullPath: '/grammarQuiz'
+      preLoaderRoute: typeof GrammarQuizRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/home': {
@@ -312,11 +345,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VocabRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/vocabQuiz': {
+      id: '/vocabQuiz'
+      path: '/vocabQuiz'
+      fullPath: '/vocabQuiz'
+      preLoaderRoute: typeof VocabQuizRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  GrammarQuizRoute: GrammarQuizRoute,
   HomeRoute: HomeRoute,
   InfoRoute: InfoRoute,
   JlptN1Route: JlptN1Route,
@@ -330,6 +371,7 @@ const rootRouteChildren: RootRouteChildren = {
   SelectTypeRoute: SelectTypeRoute,
   StudyRoute: StudyRoute,
   VocabRoute: VocabRoute,
+  VocabQuizRoute: VocabQuizRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

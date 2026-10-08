@@ -33,6 +33,16 @@ function SelectType() {
             return;
         }
 
+        if (subject === "vocabulary" && mode === "quiz") {
+            navigate({ to: "/vocabQuiz", search: { level } });
+            return;
+        }
+
+        if (subject === "grammar" && mode === "quiz") {
+            navigate({ to: "/grammarQuiz", search: { level } });
+            return;
+        }
+
         navigate({ to: "/study", search: { level, subject, mode } });
     }
 
