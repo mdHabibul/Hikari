@@ -96,9 +96,9 @@ function VocabQuiz({ level }) {
 
                 <div className="overflow-hidden rounded-3xl border border-custom-border-hover bg-custom-secondary shadow-2xl">
                     <div className="flex flex-col items-center px-6 pb-12 pt-12">
-                        <p className="mb-8 text-xs font-medium uppercase text-custom-text-muted">Recognize the character</p>
-                        <div className="flex h-72 w-72 items-center justify-center rounded-3xl border border-custom-border-hover bg-custom-background shadow-inner">
-                            <span className="font-kanji text-[11rem] font-normal text-custom-text">{vocabPile[vocabIndex[correctIndex]]}</span>
+                        <p className="mb-8 text-xs font-medium uppercase text-custom-text-muted">Recognize the word</p>
+                        <div className="flex px-10 py-10 items-center justify-center rounded-3xl border border-custom-border-hover bg-custom-background shadow-inner">
+                            <span className="font-kanji text-[8rem] text-center font-normal text-custom-text">{vocabPile[vocabIndex[correctIndex]]}</span>
                         </div>
                         <p className="mt-8 text-sm text-custom-text-muted">Take your time. Study at your own pace.</p>
                     </div>
