@@ -8,7 +8,7 @@ function Info() {
     const navigate = useNavigate();
 
     return (
-        <div className="min-h-screen w-full bg-custom-background font-english text-custom-text">
+        <div className="min-h-screen w-full bg-custom-background bg-[url('/topography.svg')] bg-repeat bg-blend-soft-light font-english text-custom-text">
             <div className="mx-auto max-w-5xl px-6 py-12">
                 <div className="mb-10 flex flex-wrap items-end justify-between gap-5">
                     <div>

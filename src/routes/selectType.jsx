@@ -47,7 +47,7 @@ function SelectType() {
     }
 
     return (
-        <div className="min-h-screen w-full bg-custom-background px-6 py-20 font-english text-custom-text">
+        <div className="min-h-screen w-full bg-custom-background bg-[url('/topography.svg')] bg-repeat bg-blend-soft-light px-6 py-20 font-english text-custom-text">
             <p className="mb-3 text-center text-xs font-semibold uppercase tracking-[0.3em] text-custom-text-muted">{subject === "vocabulary" ? "Vocabulary" : subject === "grammar" ? "Grammar" : "Kanji"} study</p>
             <h1 className="mb-4 text-center text-4xl font-semibold sm:text-5xl">Choose your {subject === "vocabulary" ? "vocabulary" : subject === "grammar" ? "grammar" : "kanji"} study mode</h1>
             <p className="mb-12 text-center text-sm text-custom-text-muted">JLPT N{level}</p>

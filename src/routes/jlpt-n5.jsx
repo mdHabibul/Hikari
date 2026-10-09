@@ -9,7 +9,7 @@ export const Route = createFileRoute("/jlpt-n5")({
 function JlptN5() {
   return (
     <>
-      <div className="bg-[#FFE5C5] w-full min-h-screen text-[#E05555]">
+      <div className="bg-[#FFE5C5] bg-[url('/topography.svg')] bg-repeat bg-blend-soft-light w-full min-h-screen text-[#E05555]">
         <KanjiApi level={5} />
       </div>
     </>

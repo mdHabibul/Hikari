@@ -12,7 +12,7 @@ function SelectLesson() {
         const { level } = Route.useSearch();
 
     return (
-        <div className="w-full min-h-screen px-6 py-20 bg-custom-background font-english text-custom-text">
+        <div className="w-full min-h-screen px-6 py-20 bg-custom-background bg-[url('/topography.svg')] bg-repeat bg-blend-soft-light font-english text-custom-text">
             <p className="text-center mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-custom-text-muted">Learning center</p>
             <h1 className="text-center text-4xl sm:text-5xl font-semibold mb-4">Select what you want to learn</h1>
             <p className="text-center mb-12 text-sm text-custom-text-muted">Choose a subject and continue your Japanese learning journey.</p>

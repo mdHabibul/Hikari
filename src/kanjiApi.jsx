@@ -69,7 +69,7 @@ function KanjiApi({ level }) {
   };
 
   return (
-    <div className="min-h-screen w-full bg-custom-background text-custom-text font-english">
+    <div className="min-h-screen w-full bg-custom-background bg-[url('/topography.svg')] bg-repeat bg-blend-soft-light text-custom-text font-english">
       <div className="mx-auto max-w-5xl px-6 py-12">
         <div className="mb-10 flex items-center justify-between">
           <div>

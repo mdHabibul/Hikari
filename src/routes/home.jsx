@@ -9,7 +9,7 @@ function Home() {
     const navigate = useNavigate();
 
     return (
-        <div className="w-full min-h-screen text-center bg-custom-background font-english text-custom-text">
+        <div className="w-full min-h-screen text-center bg-custom-background bg-[url('/topography.svg')] bg-repeat bg-blend-soft-light font-english text-custom-text">
             <div className="py-15">
                 <p className="mb-3 text-xs font-semibold uppercase text-custom-text-muted">Your Learning Journey</p>
                 <h1 className="mb-4 text-center text-5xl font-semibold">Select your level</h1>
