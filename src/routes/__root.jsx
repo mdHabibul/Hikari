@@ -8,11 +8,14 @@ export const Route = createRootRoute({
 
 function Root() {
     const [hamIsClicked, setHamIsClicked] = useState(false);
+    const [apiKeyBtn, setApiKeyBtn] = useState(false);
     const navigate = useNavigate();
+
+
 
     return (
         <>
-            <div className="font-english flex justify-between items-center px-6 bg-custom-navbar-bg text-custom-navbar-text">
+            <div className="fixed z-20 w-full font-english flex justify-between items-center px-6 bg-custom-navbar-bg text-custom-navbar-text">
                 <div className="flex justify-center items-center">
                     <img className="size-12" src={logo} alt="Hikari logo" />
                     <h1 className="text-custom-navbar-title pl-3 py-1 uppercase text-5xl">Hikari</h1>
@@ -46,12 +49,35 @@ function Root() {
                                 <button onClick={() => { navigate({ to: "/info" }); setHamIsClicked(false); }} className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-left text-sm hover:bg-custom-secondary-hover">
                                     About Hikari <span>→</span>
                                 </button>
+                                <button onClick={() => { setApiKeyBtn(true); setHamIsClicked(false); }} className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-left text-sm hover:bg-custom-secondary-hover">
+                                    Store your API key <span>→</span>
+                                </button>
                             </div>
                         )}
                     </div>
                 </div>
             </div>
+            <div className="h-12" />
 
+            {apiKeyBtn && (
+                <div className="fixed z-10 flex h-screen w-screen bg-black/30 p-4">
+                    <div className="m-auto w-full max-w-md rounded-xl border border-custom-border bg-custom-surface p-6 text-custom-text shadow-2xl">
+                        <h2 className="mb-2 text-2xl">Store your API key</h2>
+                        <p className="mb-5 text-sm text-custom-text-muted">Your key will be saved in this browser.</p>
+                        <input id="apiKeyInput" type="password" placeholder="Enter API key" className="mb-5 w-full rounded-lg border border-custom-input-border bg-custom-input-bg px-3 py-2 outline-none focus:border-custom-border-focus" />
+                        <div className="flex justify-end gap-3">
+                            <button onClick={() => setApiKeyBtn(false)} className="rounded-lg px-4 py-2 text-custom-text-muted hover:bg-custom-secondary-hover">Cancel</button>
+                            <button
+                                onClick={() => {
+                                    const apiKey = document.getElementById("apiKeyInput").value;
+                                    localStorage.setItem("hikari-api-key", apiKey);
+                                    setApiKeyBtn(false);
+                                }}
+                                className="rounded-lg bg-custom-primary px-4 py-2 text-custom-text-inverse hover:bg-custom-primary-hover">Enter</button>
+                        </div>
+                    </div>
+                </div>
+            )}
             <Outlet />
         </>
     )
