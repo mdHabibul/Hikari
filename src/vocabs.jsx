@@ -11,7 +11,7 @@ function Vocabs({ level }) {
     }, [level]);
 
     return (
-        <div className="min-h-screen w-full bg-custom-background text-custom-text font-english">
+        <div className="min-h-screen w-full bg-custom-background bg-[url('/topography.svg')] bg-repeat bg-blend-soft-light text-custom-text font-english">
             <div className="mx-auto max-w-6xl px-6 py-12">
                 <div className="mb-10 flex items-end justify-between">
                     <div>
@@ -43,7 +43,7 @@ function VocabBox({ dataVocab }) {
                         <p className="font-japanese font-medium">{element.reading || ""}</p>
                     </div>
                     <h2 className="mb-4 font-kanji text-6xl">{element.word}</h2>
-                    <p className="text-sm">{element.meanings? element.meanings[0] : "_"}</p>
+                    <p className="text-sm">{element.meanings ? element.meanings[0] : "_"}</p>
                 </div>
             ))}
         </div>

@@ -10,12 +10,6 @@ function GramApi({ level = 3 }) {
         formation: null,
         examplesArray: [],
         isLoading: true,
-        // showReading: false,
-        // showMeaning: false,
-        // showEx: false,
-        // showReadingBtn: true,
-        // showMeaningBtn: true,
-        // showExBtn: true,
     });
 
     useEffect(() => {
@@ -40,12 +34,6 @@ function GramApi({ level = 3 }) {
                     formation: randomGram.formation ?? null,
                     examplesArray: randomGram.examples ?? [],
                     isLoading: false,
-                    // showReading: false,
-                    // showMeaning: false,
-                    // showEx: false,
-                    // showReadingBtn: true,
-                    // showMeaningBtn: true,
-                    // showExBtn: true,
                 });
             });
         }
@@ -64,19 +52,13 @@ function GramApi({ level = 3 }) {
             formation: randomGram.formation ?? null,
             examplesArray: randomGram.examples ?? [],
             isLoading: false,
-            // showReading: false,
-            // showMeaning: false,
-            // showEx: false,
-            // showReadingBtn: true,
-            // showMeaningBtn: true,
-            // showExBtn: true,
         });
     }
 
     const patternFontSize = `${Math.min(3.75, 15 / Math.max(gram.pattern?.length ?? 1, 1))}rem`;
 
     return (
-        <div className="min-h-screen w-full bg-custom-background text-custom-text font-english">
+        <div className="min-h-screen w-full bg-custom-background bg-[url('/topography.svg')] bg-repeat bg-blend-soft-light text-custom-text font-english">
             <div className="mx-auto max-w-5xl px-6 py-12">
                 <div className="mb-10 flex items-center justify-between">
                     <div>
