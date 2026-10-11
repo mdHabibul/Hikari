@@ -51,6 +51,7 @@ function Home() {
                     <p className="mt-4 text-xs text-custom-text-muted">Content totals across JLPT N1 to N5.</p>
                 </section>
             </div>
+            <p className="mt-6 pb-2 text-sm text-center text-custom-text-muted">© 2026 Md. Habibul Bashar Alif. All Rights Reserved.</p>
         </div>
     )
 }
