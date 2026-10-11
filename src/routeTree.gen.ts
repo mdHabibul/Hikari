@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as GrammarQuizRouteImport } from './routes/grammarQuiz'
+import { Route as HiraganaRouteImport } from './routes/hiragana'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as InfoRouteImport } from './routes/info'
 import { Route as JlptN1RouteImport } from './routes/jlpt-n1'
@@ -20,6 +21,7 @@ import { Route as JlptN4RouteImport } from './routes/jlpt-n4'
 import { Route as JlptN5RouteImport } from './routes/jlpt-n5'
 import { Route as KanjiQuizRouteImport } from './routes/kanjiQuiz'
 import { Route as KanjisRouteImport } from './routes/kanjis'
+import { Route as KatakanaRouteImport } from './routes/katakana'
 import { Route as SelectLessonRouteImport } from './routes/selectLesson'
 import { Route as SelectTypeRouteImport } from './routes/selectType'
 import { Route as StudyRouteImport } from './routes/study'
@@ -34,6 +36,11 @@ const IndexRoute = IndexRouteImport.update({
 const GrammarQuizRoute = GrammarQuizRouteImport.update({
   id: '/grammarQuiz',
   path: '/grammarQuiz',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HiraganaRoute = HiraganaRouteImport.update({
+  id: '/hiragana',
+  path: '/hiragana',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HomeRoute = HomeRouteImport.update({
@@ -81,6 +88,11 @@ const KanjisRoute = KanjisRouteImport.update({
   path: '/kanjis',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KatakanaRoute = KatakanaRouteImport.update({
+  id: '/katakana',
+  path: '/katakana',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SelectLessonRoute = SelectLessonRouteImport.update({
   id: '/selectLesson',
   path: '/selectLesson',
@@ -110,6 +122,7 @@ const VocabQuizRoute = VocabQuizRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/grammarQuiz': typeof GrammarQuizRoute
+  '/hiragana': typeof HiraganaRoute
   '/home': typeof HomeRoute
   '/info': typeof InfoRoute
   '/jlpt-n1': typeof JlptN1Route
@@ -119,6 +132,7 @@ export interface FileRoutesByFullPath {
   '/jlpt-n5': typeof JlptN5Route
   '/kanjiQuiz': typeof KanjiQuizRoute
   '/kanjis': typeof KanjisRoute
+  '/katakana': typeof KatakanaRoute
   '/selectLesson': typeof SelectLessonRoute
   '/selectType': typeof SelectTypeRoute
   '/study': typeof StudyRoute
@@ -128,6 +142,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/grammarQuiz': typeof GrammarQuizRoute
+  '/hiragana': typeof HiraganaRoute
   '/home': typeof HomeRoute
   '/info': typeof InfoRoute
   '/jlpt-n1': typeof JlptN1Route
@@ -137,6 +152,7 @@ export interface FileRoutesByTo {
   '/jlpt-n5': typeof JlptN5Route
   '/kanjiQuiz': typeof KanjiQuizRoute
   '/kanjis': typeof KanjisRoute
+  '/katakana': typeof KatakanaRoute
   '/selectLesson': typeof SelectLessonRoute
   '/selectType': typeof SelectTypeRoute
   '/study': typeof StudyRoute
@@ -147,6 +163,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/grammarQuiz': typeof GrammarQuizRoute
+  '/hiragana': typeof HiraganaRoute
   '/home': typeof HomeRoute
   '/info': typeof InfoRoute
   '/jlpt-n1': typeof JlptN1Route
@@ -156,6 +173,7 @@ export interface FileRoutesById {
   '/jlpt-n5': typeof JlptN5Route
   '/kanjiQuiz': typeof KanjiQuizRoute
   '/kanjis': typeof KanjisRoute
+  '/katakana': typeof KatakanaRoute
   '/selectLesson': typeof SelectLessonRoute
   '/selectType': typeof SelectTypeRoute
   '/study': typeof StudyRoute
@@ -167,6 +185,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/grammarQuiz'
+    | '/hiragana'
     | '/home'
     | '/info'
     | '/jlpt-n1'
@@ -176,6 +195,7 @@ export interface FileRouteTypes {
     | '/jlpt-n5'
     | '/kanjiQuiz'
     | '/kanjis'
+    | '/katakana'
     | '/selectLesson'
     | '/selectType'
     | '/study'
@@ -185,6 +205,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/grammarQuiz'
+    | '/hiragana'
     | '/home'
     | '/info'
     | '/jlpt-n1'
@@ -194,6 +215,7 @@ export interface FileRouteTypes {
     | '/jlpt-n5'
     | '/kanjiQuiz'
     | '/kanjis'
+    | '/katakana'
     | '/selectLesson'
     | '/selectType'
     | '/study'
@@ -203,6 +225,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/grammarQuiz'
+    | '/hiragana'
     | '/home'
     | '/info'
     | '/jlpt-n1'
@@ -212,6 +235,7 @@ export interface FileRouteTypes {
     | '/jlpt-n5'
     | '/kanjiQuiz'
     | '/kanjis'
+    | '/katakana'
     | '/selectLesson'
     | '/selectType'
     | '/study'
@@ -222,6 +246,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   GrammarQuizRoute: typeof GrammarQuizRoute
+  HiraganaRoute: typeof HiraganaRoute
   HomeRoute: typeof HomeRoute
   InfoRoute: typeof InfoRoute
   JlptN1Route: typeof JlptN1Route
@@ -231,6 +256,7 @@ export interface RootRouteChildren {
   JlptN5Route: typeof JlptN5Route
   KanjiQuizRoute: typeof KanjiQuizRoute
   KanjisRoute: typeof KanjisRoute
+  KatakanaRoute: typeof KatakanaRoute
   SelectLessonRoute: typeof SelectLessonRoute
   SelectTypeRoute: typeof SelectTypeRoute
   StudyRoute: typeof StudyRoute
@@ -252,6 +278,13 @@ declare module '@tanstack/react-router' {
       path: '/grammarQuiz'
       fullPath: '/grammarQuiz'
       preLoaderRoute: typeof GrammarQuizRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hiragana': {
+      id: '/hiragana'
+      path: '/hiragana'
+      fullPath: '/hiragana'
+      preLoaderRoute: typeof HiraganaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/home': {
@@ -317,6 +350,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KanjisRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/katakana': {
+      id: '/katakana'
+      path: '/katakana'
+      fullPath: '/katakana'
+      preLoaderRoute: typeof KatakanaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/selectLesson': {
       id: '/selectLesson'
       path: '/selectLesson'
@@ -358,6 +398,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   GrammarQuizRoute: GrammarQuizRoute,
+  HiraganaRoute: HiraganaRoute,
   HomeRoute: HomeRoute,
   InfoRoute: InfoRoute,
   JlptN1Route: JlptN1Route,
@@ -367,6 +408,7 @@ const rootRouteChildren: RootRouteChildren = {
   JlptN5Route: JlptN5Route,
   KanjiQuizRoute: KanjiQuizRoute,
   KanjisRoute: KanjisRoute,
+  KatakanaRoute: KatakanaRoute,
   SelectLessonRoute: SelectLessonRoute,
   SelectTypeRoute: SelectTypeRoute,
   StudyRoute: StudyRoute,

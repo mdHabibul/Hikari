@@ -82,6 +82,19 @@ function VocabApi({ level }) {
         setVocab((prev) => ({ ...prev, showEx: true, showExBtn: false }));
     };
 
+    const handleAudioButtonClick = () => {
+        if (!vocab.word) return;
+        if (!window.speechSynthesis) return;
+
+        const speech = vocab.word;
+        const speak = new SpeechSynthesisUtterance(speech);
+
+        speak.lang = "ja-JP";
+        speak.rate = 0.9;
+
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(speak);
+    };
 
     return (
         <div className="min-h-screen w-full bg-custom-background bg-[url('/topography.svg')] bg-repeat bg-blend-soft-light text-custom-text font-english">
@@ -111,6 +124,7 @@ function VocabApi({ level }) {
                         </div>
                         <div className="border-t border-custom-border-hover px-6 py-6">
                             <div className="flex justify-center gap-3">
+                                <button onClick={handleAudioButtonClick} className="rounded-xl border border-custom-border-hover bg-custom-background px-8 py-3 text-sm font-medium text-custom-text-muted hover:border-custom-primary hover:text-custom-text transition-all duration-500">Audio</button>
                                 <button onClick={() => setVocab((prev) => ({ word: null }))} className="rounded-xl border border-custom-border-hover bg-custom-background px-8 py-3 text-sm font-medium text-custom-text-muted hover:border-custom-primary hover:text-custom-text transition-all duration-500">Clear</button>
                                 <button onClick={nextWord} className="rounded-xl bg-custom-primary px-10 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 active:scale-[0.98]">Next Word<span className="ml-3">→</span></button>
                             </div>

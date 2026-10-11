@@ -4,12 +4,12 @@ export const Route = createFileRoute("/selectLesson")({
     validateSearch: (search) => ({
         level: Math.min(5, Math.max(1, Number(search.level) || 5)),
     }),
-  component: SelectLesson,
+    component: SelectLesson,
 });
 
 function SelectLesson() {
-        const navigate = useNavigate();
-        const { level } = Route.useSearch();
+    const navigate = useNavigate();
+    const { level } = Route.useSearch();
 
     return (
         <div className="w-full min-h-screen px-6 py-20 bg-custom-background bg-[url('/topography.svg')] bg-repeat bg-blend-soft-light font-english text-custom-text">
@@ -18,6 +18,28 @@ function SelectLesson() {
             <p className="text-center mb-12 text-sm text-custom-text-muted">Choose a subject and continue your Japanese learning journey.</p>
 
             <div className="flex flex-col justify-center gap-4 m-auto max-w-3xl text-custom-text">
+
+                {level === 5 && (
+
+                    <button onClick={() => navigate({ to: "/hiragana" })} className="group flex items-center justify-between py-6 px-6 rounded-2xl border border-custom-border-hover bg-custom-secondary text-left transition-all duration-200 hover:cursor-pointer hover:-translate-y-1 hover:border-custom-primary hover:bg-custom-secondary-hover hover:shadow-2xl active:bg-custom-mint-hover">
+                        <div>
+                            <p className="mb-2 text-xl font-semibold text-custom-text">Hiragana</p>
+                            <p className="text-sm text-custom-text-muted">Learn the hiragana syllabary</p>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="text-xl text-custom-text-muted transition-transform group-hover:translate-x-1"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
+                    </button>
+                )}
+                {level === 5 && (
+                    <button onClick={() => navigate({ to: "/katakana" })} className="group flex items-center justify-between py-6 px-6 rounded-2xl border border-custom-border-hover bg-custom-secondary text-left transition-all duration-200 hover:cursor-pointer hover:-translate-y-1 hover:border-custom-primary hover:bg-custom-secondary-hover hover:shadow-2xl active:bg-custom-mint-hover">
+                        <div>
+                            <p className="mb-2 text-xl font-semibold text-custom-text">Katakana</p>
+                            <p className="text-sm text-custom-text-muted">Learn the katakana syllabary</p>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="text-xl text-custom-text-muted transition-transform group-hover:translate-x-1"><path d="M7 7h10v10" /><path d="M7 17 17 7" /></svg>
+                    </button>
+
+                )}
+
                 <button onClick={() => navigate({ to: "/selectType", search: { level, subject: "kanji" } })} className="group flex items-center justify-between py-6 px-6 rounded-2xl border border-custom-border-hover bg-custom-secondary text-left transition-all duration-200 hover:cursor-pointer hover:-translate-y-1 hover:border-custom-primary hover:bg-custom-secondary-hover hover:shadow-2xl active:bg-custom-mint-hover">
                     <div>
                         <p className="mb-2 text-xl font-semibold text-custom-text">Kanji</p>
