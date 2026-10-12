@@ -35,16 +35,31 @@ function Vocabs({ level }) {
 }
 
 function VocabBox({ dataVocab }) {
+
+    const handleAudioButtonClick = (element) => {
+        if (!element.word) return;
+        if (!window.speechSynthesis) return;
+
+        const speech = element.word;
+        const speak = new SpeechSynthesisUtterance(speech);
+
+        speak.lang = "ja-JP";
+        speak.rate = 0.9;
+
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(speak);
+    };
+    
     return (
         <div className="flex flex-wrap gap-4">
             {dataVocab.map((element) => (
-                <div key={element.word} className="w-42 rounded-2xl border border-custom-border-hover bg-custom-bg-50 p-5 text-center shadow-sm transition-all duration-100 hover:-translate-y-1 hover:cursor-pointer hover:shadow-2xl">
+                <button onClick={() => handleAudioButtonClick(element)} className="w-42 rounded-2xl border border-custom-border-hover bg-custom-bg-50 p-5 text-center shadow-sm transition-all duration-100 hover:-translate-y-1 hover:cursor-pointer hover:shadow-2xl active:translate-y-0.5">
                     <div className="mb-4 flex min-h-5 justify-center gap-2 text-xs">
                         <p className="font-japanese font-medium">{element.reading || ""}</p>
                     </div>
                     <h2 className="mb-4 font-kanji text-6xl">{element.word}</h2>
                     <p className="text-sm">{element.meanings ? element.meanings[0] : "_"}</p>
-                </div>
+                </button>
             ))}
         </div>
     );

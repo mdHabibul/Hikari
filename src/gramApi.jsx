@@ -55,7 +55,19 @@ function GramApi({ level = 3 }) {
         });
     }
 
-    const patternFontSize = `${Math.min(3.75, 15 / Math.max(gram.pattern?.length ?? 1, 1))}rem`;
+    const handleAudioButtonClick = () => {
+        if (!gram.pattern) return;
+        if (!window.speechSynthesis) return;
+
+        const speech = gram.pattern;
+        const speak = new SpeechSynthesisUtterance(speech);
+
+        speak.lang = "ja-JP";
+        speak.rate = 0.9;
+
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(speak);
+    };
 
     return (
         <div className="min-h-screen w-full bg-custom-background bg-[url('/topography.svg')] bg-repeat bg-blend-soft-light text-custom-text font-english">
@@ -99,6 +111,7 @@ function GramApi({ level = 3 }) {
                         </div>
                         <div className="border-t border-custom-border-hover px-6 py-5">
                             <div className="flex justify-center gap-3">
+                                <button onClick={handleAudioButtonClick}>Audio</button>
                                 <button onClick={() => setGram((prev) => ({ ...prev, pattern: null }))} className="rounded-xl border border-custom-border-hover bg-custom-background px-8 py-3 text-sm font-medium text-custom-text-muted transition-all duration-500 hover:border-custom-primary hover:text-custom-text">Clear</button>
                                 <button onClick={nextGram} className="rounded-xl bg-custom-primary px-10 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 active:scale-[0.98]">Next Grammar<span className="ml-3">→</span></button>
                             </div>
