@@ -21,7 +21,7 @@ function SelectLesson() {
 
                 {level === 5 && (
 
-                    <button onClick={() => navigate({ to: "/hiragana" })} className="group flex items-center justify-between py-6 px-6 rounded-2xl border border-custom-border-hover bg-custom-secondary text-left transition-all duration-200 hover:cursor-pointer hover:-translate-y-1 hover:border-custom-primary hover:bg-custom-secondary-hover hover:shadow-2xl active:bg-custom-mint-hover">
+                    <button onClick={() => navigate({ to: "/kanaMode", search: { script: "hiragana" } })} className="group flex items-center justify-between py-6 px-6 rounded-2xl border border-custom-border-hover bg-custom-secondary text-left transition-all duration-200 hover:cursor-pointer hover:-translate-y-1 hover:border-custom-primary hover:bg-custom-secondary-hover hover:shadow-2xl active:bg-custom-mint-hover">
                         <div>
                             <p className="mb-2 text-xl font-semibold text-custom-text">Hiragana</p>
                             <p className="text-sm text-custom-text-muted">Learn the hiragana syllabary</p>
@@ -30,7 +30,7 @@ function SelectLesson() {
                     </button>
                 )}
                 {level === 5 && (
-                    <button onClick={() => navigate({ to: "/katakana" })} className="group flex items-center justify-between py-6 px-6 rounded-2xl border border-custom-border-hover bg-custom-secondary text-left transition-all duration-200 hover:cursor-pointer hover:-translate-y-1 hover:border-custom-primary hover:bg-custom-secondary-hover hover:shadow-2xl active:bg-custom-mint-hover">
+                    <button onClick={() => navigate({ to: "/kanaMode", search: { script: "katakana" } })} className="group flex items-center justify-between py-6 px-6 rounded-2xl border border-custom-border-hover bg-custom-secondary text-left transition-all duration-200 hover:cursor-pointer hover:-translate-y-1 hover:border-custom-primary hover:bg-custom-secondary-hover hover:shadow-2xl active:bg-custom-mint-hover">
                         <div>
                             <p className="mb-2 text-xl font-semibold text-custom-text">Katakana</p>
                             <p className="text-sm text-custom-text-muted">Learn the katakana syllabary</p>

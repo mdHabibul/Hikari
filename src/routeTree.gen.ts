@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as GrammarQuizRouteImport } from './routes/grammarQuiz'
 import { Route as HiraganaRouteImport } from './routes/hiragana'
+import { Route as HiraganaQuizRouteImport } from './routes/hiraganaQuiz'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as InfoRouteImport } from './routes/info'
 import { Route as JlptN1RouteImport } from './routes/jlpt-n1'
@@ -19,9 +20,11 @@ import { Route as JlptN2RouteImport } from './routes/jlpt-n2'
 import { Route as JlptN3RouteImport } from './routes/jlpt-n3'
 import { Route as JlptN4RouteImport } from './routes/jlpt-n4'
 import { Route as JlptN5RouteImport } from './routes/jlpt-n5'
+import { Route as KanaModeRouteImport } from './routes/kanaMode'
 import { Route as KanjiQuizRouteImport } from './routes/kanjiQuiz'
 import { Route as KanjisRouteImport } from './routes/kanjis'
 import { Route as KatakanaRouteImport } from './routes/katakana'
+import { Route as KatakanaQuizRouteImport } from './routes/katakanaQuiz'
 import { Route as SelectLessonRouteImport } from './routes/selectLesson'
 import { Route as SelectTypeRouteImport } from './routes/selectType'
 import { Route as StudyRouteImport } from './routes/study'
@@ -41,6 +44,11 @@ const GrammarQuizRoute = GrammarQuizRouteImport.update({
 const HiraganaRoute = HiraganaRouteImport.update({
   id: '/hiragana',
   path: '/hiragana',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HiraganaQuizRoute = HiraganaQuizRouteImport.update({
+  id: '/hiraganaQuiz',
+  path: '/hiraganaQuiz',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HomeRoute = HomeRouteImport.update({
@@ -78,6 +86,11 @@ const JlptN5Route = JlptN5RouteImport.update({
   path: '/jlpt-n5',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KanaModeRoute = KanaModeRouteImport.update({
+  id: '/kanaMode',
+  path: '/kanaMode',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const KanjiQuizRoute = KanjiQuizRouteImport.update({
   id: '/kanjiQuiz',
   path: '/kanjiQuiz',
@@ -91,6 +104,11 @@ const KanjisRoute = KanjisRouteImport.update({
 const KatakanaRoute = KatakanaRouteImport.update({
   id: '/katakana',
   path: '/katakana',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KatakanaQuizRoute = KatakanaQuizRouteImport.update({
+  id: '/katakanaQuiz',
+  path: '/katakanaQuiz',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SelectLessonRoute = SelectLessonRouteImport.update({
@@ -123,6 +141,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/grammarQuiz': typeof GrammarQuizRoute
   '/hiragana': typeof HiraganaRoute
+  '/hiraganaQuiz': typeof HiraganaQuizRoute
   '/home': typeof HomeRoute
   '/info': typeof InfoRoute
   '/jlpt-n1': typeof JlptN1Route
@@ -130,9 +149,11 @@ export interface FileRoutesByFullPath {
   '/jlpt-n3': typeof JlptN3Route
   '/jlpt-n4': typeof JlptN4Route
   '/jlpt-n5': typeof JlptN5Route
+  '/kanaMode': typeof KanaModeRoute
   '/kanjiQuiz': typeof KanjiQuizRoute
   '/kanjis': typeof KanjisRoute
   '/katakana': typeof KatakanaRoute
+  '/katakanaQuiz': typeof KatakanaQuizRoute
   '/selectLesson': typeof SelectLessonRoute
   '/selectType': typeof SelectTypeRoute
   '/study': typeof StudyRoute
@@ -143,6 +164,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/grammarQuiz': typeof GrammarQuizRoute
   '/hiragana': typeof HiraganaRoute
+  '/hiraganaQuiz': typeof HiraganaQuizRoute
   '/home': typeof HomeRoute
   '/info': typeof InfoRoute
   '/jlpt-n1': typeof JlptN1Route
@@ -150,9 +172,11 @@ export interface FileRoutesByTo {
   '/jlpt-n3': typeof JlptN3Route
   '/jlpt-n4': typeof JlptN4Route
   '/jlpt-n5': typeof JlptN5Route
+  '/kanaMode': typeof KanaModeRoute
   '/kanjiQuiz': typeof KanjiQuizRoute
   '/kanjis': typeof KanjisRoute
   '/katakana': typeof KatakanaRoute
+  '/katakanaQuiz': typeof KatakanaQuizRoute
   '/selectLesson': typeof SelectLessonRoute
   '/selectType': typeof SelectTypeRoute
   '/study': typeof StudyRoute
@@ -164,6 +188,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/grammarQuiz': typeof GrammarQuizRoute
   '/hiragana': typeof HiraganaRoute
+  '/hiraganaQuiz': typeof HiraganaQuizRoute
   '/home': typeof HomeRoute
   '/info': typeof InfoRoute
   '/jlpt-n1': typeof JlptN1Route
@@ -171,9 +196,11 @@ export interface FileRoutesById {
   '/jlpt-n3': typeof JlptN3Route
   '/jlpt-n4': typeof JlptN4Route
   '/jlpt-n5': typeof JlptN5Route
+  '/kanaMode': typeof KanaModeRoute
   '/kanjiQuiz': typeof KanjiQuizRoute
   '/kanjis': typeof KanjisRoute
   '/katakana': typeof KatakanaRoute
+  '/katakanaQuiz': typeof KatakanaQuizRoute
   '/selectLesson': typeof SelectLessonRoute
   '/selectType': typeof SelectTypeRoute
   '/study': typeof StudyRoute
@@ -186,6 +213,7 @@ export interface FileRouteTypes {
     | '/'
     | '/grammarQuiz'
     | '/hiragana'
+    | '/hiraganaQuiz'
     | '/home'
     | '/info'
     | '/jlpt-n1'
@@ -193,9 +221,11 @@ export interface FileRouteTypes {
     | '/jlpt-n3'
     | '/jlpt-n4'
     | '/jlpt-n5'
+    | '/kanaMode'
     | '/kanjiQuiz'
     | '/kanjis'
     | '/katakana'
+    | '/katakanaQuiz'
     | '/selectLesson'
     | '/selectType'
     | '/study'
@@ -206,6 +236,7 @@ export interface FileRouteTypes {
     | '/'
     | '/grammarQuiz'
     | '/hiragana'
+    | '/hiraganaQuiz'
     | '/home'
     | '/info'
     | '/jlpt-n1'
@@ -213,9 +244,11 @@ export interface FileRouteTypes {
     | '/jlpt-n3'
     | '/jlpt-n4'
     | '/jlpt-n5'
+    | '/kanaMode'
     | '/kanjiQuiz'
     | '/kanjis'
     | '/katakana'
+    | '/katakanaQuiz'
     | '/selectLesson'
     | '/selectType'
     | '/study'
@@ -226,6 +259,7 @@ export interface FileRouteTypes {
     | '/'
     | '/grammarQuiz'
     | '/hiragana'
+    | '/hiraganaQuiz'
     | '/home'
     | '/info'
     | '/jlpt-n1'
@@ -233,9 +267,11 @@ export interface FileRouteTypes {
     | '/jlpt-n3'
     | '/jlpt-n4'
     | '/jlpt-n5'
+    | '/kanaMode'
     | '/kanjiQuiz'
     | '/kanjis'
     | '/katakana'
+    | '/katakanaQuiz'
     | '/selectLesson'
     | '/selectType'
     | '/study'
@@ -247,6 +283,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   GrammarQuizRoute: typeof GrammarQuizRoute
   HiraganaRoute: typeof HiraganaRoute
+  HiraganaQuizRoute: typeof HiraganaQuizRoute
   HomeRoute: typeof HomeRoute
   InfoRoute: typeof InfoRoute
   JlptN1Route: typeof JlptN1Route
@@ -254,9 +291,11 @@ export interface RootRouteChildren {
   JlptN3Route: typeof JlptN3Route
   JlptN4Route: typeof JlptN4Route
   JlptN5Route: typeof JlptN5Route
+  KanaModeRoute: typeof KanaModeRoute
   KanjiQuizRoute: typeof KanjiQuizRoute
   KanjisRoute: typeof KanjisRoute
   KatakanaRoute: typeof KatakanaRoute
+  KatakanaQuizRoute: typeof KatakanaQuizRoute
   SelectLessonRoute: typeof SelectLessonRoute
   SelectTypeRoute: typeof SelectTypeRoute
   StudyRoute: typeof StudyRoute
@@ -285,6 +324,13 @@ declare module '@tanstack/react-router' {
       path: '/hiragana'
       fullPath: '/hiragana'
       preLoaderRoute: typeof HiraganaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hiraganaQuiz': {
+      id: '/hiraganaQuiz'
+      path: '/hiraganaQuiz'
+      fullPath: '/hiraganaQuiz'
+      preLoaderRoute: typeof HiraganaQuizRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/home': {
@@ -336,6 +382,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JlptN5RouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/kanaMode': {
+      id: '/kanaMode'
+      path: '/kanaMode'
+      fullPath: '/kanaMode'
+      preLoaderRoute: typeof KanaModeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/kanjiQuiz': {
       id: '/kanjiQuiz'
       path: '/kanjiQuiz'
@@ -355,6 +408,13 @@ declare module '@tanstack/react-router' {
       path: '/katakana'
       fullPath: '/katakana'
       preLoaderRoute: typeof KatakanaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/katakanaQuiz': {
+      id: '/katakanaQuiz'
+      path: '/katakanaQuiz'
+      fullPath: '/katakanaQuiz'
+      preLoaderRoute: typeof KatakanaQuizRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/selectLesson': {
@@ -399,6 +459,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   GrammarQuizRoute: GrammarQuizRoute,
   HiraganaRoute: HiraganaRoute,
+  HiraganaQuizRoute: HiraganaQuizRoute,
   HomeRoute: HomeRoute,
   InfoRoute: InfoRoute,
   JlptN1Route: JlptN1Route,
@@ -406,9 +467,11 @@ const rootRouteChildren: RootRouteChildren = {
   JlptN3Route: JlptN3Route,
   JlptN4Route: JlptN4Route,
   JlptN5Route: JlptN5Route,
+  KanaModeRoute: KanaModeRoute,
   KanjiQuizRoute: KanjiQuizRoute,
   KanjisRoute: KanjisRoute,
   KatakanaRoute: KatakanaRoute,
+  KatakanaQuizRoute: KatakanaQuizRoute,
   SelectLessonRoute: SelectLessonRoute,
   SelectTypeRoute: SelectTypeRoute,
   StudyRoute: StudyRoute,
