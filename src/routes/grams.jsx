@@ -70,7 +70,7 @@ function Grams({ level }) {
                                         </div>
                                         <p className="mt-2 whitespace-pre-line text-sm leading-6 text-custom-text-muted">{Array.isArray(gram.meaning) ? gram.meaning.join(", ") : gram.meaning || "No meaning available"}</p>
                                     </div>
-                                    <button onClick={() => handleAudioButtonClick(gram)}>Audio</button>
+                                    <button onClick={() => handleAudioButtonClick(gram)} className="flex items-center rounded-lg border border-custom-border-hover bg-custom-background px-3 py-2 text-xs font-semibold text-custom-text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/><path d="M16 9a5 5 0 0 1 0 6"/><path d="M19.364 18.364a9 9 0 0 0 0-12.728"/></svg></button>
                                     <button onClick={() => setOpenGram(openGram === gram.pattern ? null : gram.pattern)} className="flex items-center rounded-lg border border-custom-border-hover bg-custom-background px-3 py-2 text-xs font-semibold text-custom-text-muted">
                                         <span>{openGram === gram.pattern ? "Close" : "Details"}</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4.1 12 6" /><path d="m5.1 8-2.9-.8" /><path d="m6 12-1.9 2" /><path d="M7.2 2.2 8 5.1" /><path d="M9.037 9.69a.498.498 0 0 1 .653-.653l11 4.5a.5.5 0 0 1-.074.949l-4.349 1.041a1 1 0 0 0-.74.739l-1.04 4.35a.5.5 0 0 1-.95.074z" /></svg>
@@ -94,7 +94,7 @@ function Grams({ level }) {
                                                                 <p className="font-japanese text-base text-custom-text">{example.ja || "Japanese example unavailable"}</p>
                                                                 <p className="mt-1 text-sm leading-6 text-custom-text-muted">{example.en || "Translation unavailable"}</p>
                                                             </div>
-                                                            <button onClick={() => handleExampleAudioButtonClick(example)}>audio</button>
+                                                            <button onClick={() => handleExampleAudioButtonClick(example)} className="flex items-center rounded-lg border border-custom-border-hover bg-custom-background px-4 h-10 text-xs font-semibold text-custom-text-muted"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/><path d="M16 9a5 5 0 0 1 0 6"/><path d="M19.364 18.364a9 9 0 0 0 0-12.728"/></svg></button>
                                                         </div>
                                                     ))}
                                                 </div>
