@@ -15,6 +15,7 @@ function GrammarQuizRoute() {
 }
 
 function GrammarQuiz({ level }) {
+    const option = ["A", "B", "C", "D"];
     const [dataGram, setDataGram] = useState([]);
     const [dataGramLevel, setDataGramLevel] = useState(level);
     const [gramPile, setGramPile] = useState([]);
@@ -127,7 +128,8 @@ function GrammarQuiz({ level }) {
                                     </button>
                                 </div>
                             </div>
-                            <div className="mb-10 flex justify-end pr-15">
+                            <div className="mb-10 flex justify-between items-center px-15">
+                                <p className={`h-5 text-sm font-medium ${selectedAnswer === null ? "invisible" : selectedAnswer === correctIndex ? "text-custom-success" : "text-custom-danger"}`}>{selectedAnswer !== null && `Correct answer: ${option[correctIndex]}`}</p>
                                 <button onClick={generateQuestion} className="group rounded-xl bg-custom-primary px-10 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 active:scale-[0.98]">Next<span className="inline-block ml-3 transition-transform group-hover:translate-x-3">→</span></button>
                             </div>
                         </div>
